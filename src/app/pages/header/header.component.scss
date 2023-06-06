@@ -1,0 +1,17 @@
+nav {
+    background-color: rgb(12, 91, 137);
+  }
+  
+  li {
+    list-style: none;
+    padding: 20px 40px;
+    cursor: pointer;
+    color: white;
+  }
+  li:last-child {
+    margin-left: auto;
+  }
+  
+  ul {
+    display: flex;
+  }

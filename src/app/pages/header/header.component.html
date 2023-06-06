@@ -1,0 +1,24 @@
+<div class="main-container">
+    <nav>
+      <ul>
+        <li [routerLink]="'./home'">Home</li>
+        <!-- <li [routerLink]="">ABC</li>
+        <li [routerLink]="">XYZ</li> -->
+        <li> 
+          <img src="/src/assets/Arthavedika.png" alt="Arthvedika">
+        </li>
+        <li >
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-light" id="profileDropdown" ngbDropdownToggle>
+              {{"Profile"}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="profileDropdown">
+              <!-- <button ngbDropdownItem (click)="editProfile()">Edit Profile</button> -->
+              <button ngbDropdownItem (click)="logOut()">Logout</button>
+            
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>

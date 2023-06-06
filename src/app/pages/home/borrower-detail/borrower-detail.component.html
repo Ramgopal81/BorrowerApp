@@ -1,0 +1,182 @@
+<div>
+  <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+    <button type="button" class="btn btn-success"  (click)="back()" style="margin: 15px;">
+      Back
+    </button>
+  </div>
+  <div
+    class="container-fluid"
+    style="border: 15px solid rgb(223, 220, 220); padding-top: 0px"
+  >
+    <div class="d-flex justify-content-center pt-2 pb-3">
+      <h3>Applicant's Info</h3>
+    </div>
+    
+    <div class="row pt-3 pb-3">
+      <div
+        class="col-lg-6 col-md-6 col-sm-6 col-6"
+        style="border-right: 2px solid rgb(203, 200, 200)"
+      >
+        <div class="block">
+          <label> <b>First Name</b></label>
+          {{ borrowerDetail.applicant_firstname }}
+        </div>
+        <div class="block">
+          <label> <strong>Last Name</strong></label>
+          {{ borrowerDetail.applicant_lastname }}
+        </div>
+        <div class="block">
+          <label> <strong>Date of Birth</strong></label>
+          {{ borrowerDetail.applicant_date_of_birth }}
+        </div>
+        <div class="block">
+          <label> <strong>Gender</strong></label>
+          {{ borrowerDetail.gender }}
+        </div>
+        <div class="block">
+          <label> <strong>Email</strong></label>
+          {{ borrowerDetail.applicant_email_id }}
+        </div>
+        <div class="block">
+          <label> <strong>Phone</strong></label>
+          {{ borrowerDetail.applicant_mobile_no }}
+        </div>
+        <div class="block">
+          <label> <strong>Address line 1</strong></label>
+          {{ borrowerDetail.applicant_address_line_1 }}
+        </div>
+        <div class="block">
+          <label> <strong>Address line 2</strong></label>
+          {{ borrowerDetail.applicant_address_line_2 }}
+        </div>
+        <div class="block">
+          <label> <strong>City</strong></label>
+          {{ borrowerDetail.applicant_city_name }}
+        </div>
+        <div class="block">
+          <label> <strong>Pincode</strong></label>
+          {{ borrowerDetail.applicant_PIN }}
+        </div>
+        <div class="block">
+          <label> <strong>Father First Name</strong></label>
+          {{ borrowerDetail.applicant_father_firstname }}
+        </div>
+        <div class="block">
+          <label> <strong>Father Last Name</strong></label>
+          {{ borrowerDetail.applicant_father_lastname }}
+        </div>
+        <div class="block">
+          <label> <strong>Mother Name</strong></label>
+          {{ borrowerDetail.mother_name }}
+        </div>
+        <div class="block">
+          <label> <strong>Spouse Name</strong></label>
+          {{ borrowerDetail.spouse_name }}
+        </div>
+        <div class="block">
+          <label> <strong>Aadhar no.</strong></label>
+          {{ borrowerDetail.aadhar_no }}
+        </div>
+        <div class="block">
+          <label> <strong>Pan no.</strong></label>
+          {{ borrowerDetail.pan_no }}
+        </div>
+        <div class="block">
+          <label> <strong>Account no.</strong></label>
+          {{ borrowerDetail.account_no }}
+        </div>
+        <div class="block">
+          <label> <strong>Applicant Signature</strong></label>
+          <img [src]=signatureApplicant alt="Applicant Signature" width="400" height="400">
+        </div>
+        <div class="block">
+          <label> <strong>Aadhar card</strong></label>
+          <img [src]=applicantAadhar alt="Aadhar card" width="400" height="400">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-6">
+            <div class="block">
+              <label> <strong>Land Owned</strong></label>
+              {{ borrowerDetail.applicant_agr_land_owned }}
+            </div>
+            <div class="block">
+              <label> <strong>Monthly Income</strong></label>
+              {{ borrowerDetail.applicant_income }}
+            </div>
+            <div class="block">
+              <label> <strong>Job</strong></label>
+              {{ borrowerDetail.applicant_job }}
+            </div>
+            <div class="block">
+              <label> <strong>Loan amount</strong></label>
+              {{ borrowerDetail.applicant_loan_amount }}
+            </div>
+            <div class="block">
+              <label> <strong>No. of Family Member:</strong></label>
+              {{ borrowerDetail.no_of_family_member }}
+            </div>
+            <div class="block">
+              <label> <strong>No. of Earning Member:</strong></label>
+              {{ borrowerDetail.no_of_earning_member }}
+            </div>
+            <div class="block">
+              <label> <strong>No. of Sick Member:</strong></label>
+              {{ borrowerDetail.no_of_sick_members }}
+            </div>
+            <div class="block">
+              <label> <strong>Total Monthly expenses:</strong></label>
+              {{ borrowerDetail.applicant_expense_monthly }}
+            </div>
+            <div class="block">
+              <label> <strong>Medical expenses</strong></label>
+              {{ borrowerDetail.applicant_medical_expense }}
+            </div>
+            <div class="block">
+              <label> <strong>Clothing expenses</strong></label>
+              {{ borrowerDetail.clothing_expenses }}
+            </div>
+            <div class="block">
+              <label> <strong>Food expenses</strong></label>
+              {{ borrowerDetail.food_expenses }}
+            </div>
+            <div class="block">
+              <label> <strong>Function expenses</strong></label>
+              {{ borrowerDetail.functions_expenses }}
+            </div>
+            <div class="block">
+              <label> <strong>House renovation expenses</strong></label>
+              {{ borrowerDetail.house_renovation_expenses }}
+            </div>
+            <div class="block" >
+              <label> <strong>Applicant Photo</strong></label>
+              <img [src]=applicantPhoto alt="Applicant photo" width="400" height="400">
+            </div>
+            <div class="block">
+              <label> <strong>Pan Card</strong></label>
+              <img [src]=applicantPan alt="Pan card" width="400" height="400">
+            </div>
+          </div>
+       
+        </div>
+      </div>
+    </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+    *ngIf="validateButton==true"
+  >
+    <button type="button" class="btn btn-success"  (click)="authorise(authorisedButtonText)">
+      Approve Applicant
+    </button>
+    <button type="button" class="btn btn-danger" style="margin-left: 10px;" (click)="notAuthorise(authorisedButtonText)">
+      Reject Applicant
+    </button>
+  </div>
+ 
+  </div>
+</div>

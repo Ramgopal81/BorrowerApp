@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
+    <div class="card p-3 customCard">
+      <div class="d-flex justify-content-end pt-1 pb-2">
+        <input type="text" class="form-control" #filterInput placeholder="Filter" style="width: 200px" />
+
+      </div>
+      <ngx-datatable class="bootstrap bgmatch" style="width: 100%" [rows]="applicantsData" [columnMode]="'flex'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10">
+        <ngx-datatable-column name="S.No." [flexGrow]="1" [resizeable]="false" >
+          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ rowIndex + 1 }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Applicant Id" [flexGrow]="2" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link" style="color: black; width: 447px; padding-left: 0" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+               {{ row?.applicant_id }}
+             
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <hr />
+        
+        <ngx-datatable-column name="Name" [flexGrow]="2" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              <span> {{ row?.applicant_firstname | titlecase }}</span>
+              <span style="padding-left: 5px">
+                {{ row?.applicant_lastname | titlecase }}</span>
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Email" [flexGrow]="3" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.applicant_email_id }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Mobile No." [flexGrow]="2" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.applicant_mobile_no }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="AV Approval" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.av_approval }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="MK Approval" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.mk_approval }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SH Approval" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.sh_approval}}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+
+    </div>
