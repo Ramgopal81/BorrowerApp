@@ -1,0 +1,119 @@
+<!-- <div class="cls">
+    <h3>
+        User Management
+    </h3>
+</div>
+<div>
+    <button (click)="createUser()">
+     Create User
+    </button>
+</div>
+<div>
+    <button (click)="modifyUser()">
+     Modify User
+    </button>
+</div>
+<div>
+    <button (click)="deleteUser()">
+     Delete User
+    </button>
+</div>
+ -->
+
+ <div class="container-fluid">
+    <div class="cls" style="background-color: rgb(12, 91, 137);;">
+        <h3>
+            User Management
+        </h3>
+    </div>
+    <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
+      <div class="card p-3 customCard">
+        <div class="d-flex justify-content-end pt-1 pb-2">
+          <input type="text" class="form-control" #filterInput placeholder="Filter" style="width: 200px" />
+  
+        </div>
+        <ngx-datatable class="bootstrap bgmatch"  style="width: 100%" [rows]="userData" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="8" [columnMode]="ColumnMode.flex">
+          <!-- <ngx-datatable-column name="Select" [flexGrow]="1" [resizeable]="false" >
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+                {{ rowIndex + 1 }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column> -->
+          <ngx-datatable-column name="Select" [flexGrow]="1" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link" style="color: black; width: 447px; padding-left: 0" (dblclick)="viewBorrowerDetail(row.user_id)">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="{{row?.user_id}}" [(ngModel)]="userId">
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <hr />
+          
+          <ngx-datatable-column name="Name" [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.user_id)">
+                <span> {{ row?.firstname | titlecase }}</span>
+                <span style="padding-left: 5px">
+                  {{ row?.lastname | titlecase }}</span>
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" [flexGrow]="3" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.user_id)">
+                {{ row?.email_id }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Mobile No." [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.user_id)">
+                {{ row?.mobile_no }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Company" [flexGrow]="1.5" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.user_id)">
+                {{ row?.companyName }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+         
+        </ngx-datatable>
+      </div>
+    </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+   
+    <div >
+      <button
+        type="button"
+        class="btn btn-success"
+        style="margin-left: 60px; background-color: rgb(12, 91, 137);"
+        (click)="createUser()"
+      >
+        Add User
+      </button>
+      <button
+        type="button"
+        class="btn btn-success"
+        style="margin: 10px; background-color: rgb(12, 91, 137);"
+        (click)="modifyUser()"
+      >
+       Modify User
+      </button>
+      <button
+      type="button"
+      class="btn btn-danger"
+    (click)="deleteUser()"
+      style="margin: 10px; background-color:rgb(12, 91, 137) ;"
+    >
+     Delete User
+    </button>
+    </div>
+  </div>
+      </div>

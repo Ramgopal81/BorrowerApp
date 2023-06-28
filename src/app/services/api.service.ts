@@ -35,7 +35,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthorisationFormModel, Authorize, Detail } from '../models/dataModel';
+import { AddUserModel, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, UserDetail } from '../models/dataModel';
 import { Observable } from 'rxjs';
 
 
@@ -51,7 +51,6 @@ export class ApiService {
     return this.http.post<any>(`${this.API_URL}/user/loginPost/v1`,{mobile_no:mobile,password:pin})
   }
 
-
   postDetails(company_code: string): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/applicant/borrower/findAllApplicant/v1`, {company_code:company_code}, {
               headers: new HttpHeaders({
@@ -59,7 +58,31 @@ export class ApiService {
               }),
             
             });
-  
+  }
+  postDelete(user_id: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/user/delete_user`, {user_id:user_id}, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+
+  postuserDetails(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/user/GetAllUsers`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+  postcompanyDetails(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/user/GetAllCompany_name`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
   }
 
   getapplicantById(applicantId:string){
@@ -89,5 +112,53 @@ export class ApiService {
     });
   
   }
+
+  postAddUser(addUser: AddUserModel): Observable<any> {
+    return this.http.post(`${this.API_URL}/user/add_modify_user`, addUser, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+  postModifyUser(modifyUser: ModifyUserModel): Observable<any> {
+    return this.http.post(`${this.API_URL}/user/add_modify_user`, modifyUser, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+  postResetPass(resetPass: ResetPass): Observable<any> {
+    return this.http.post(`${this.API_URL}/user/change_password`, resetPass, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+  postForgetPass(forgetPass: ForgetPass): Observable<any> {
+    return this.http.post(`${this.API_URL}/user/forgot_password1`, forgetPass, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+
+  postUserDetail(userDetail: UserDetail): Observable<any> {
+    return this.http.post(`${this.API_URL}/user/GetUserById`, userDetail, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  }
+
+
 
 }

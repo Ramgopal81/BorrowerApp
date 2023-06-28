@@ -16,8 +16,9 @@ import { provideToastr } from 'ngx-toastr';
     provideRouter(APP_ROUTE),
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideAnimations(), // required animations providers
-    provideToastr(), // Toastr providers
-    importProvidersFrom(BrowserAnimationsModule,HttpClientModule)
+    provideAnimations(),
+    provideToastr(),
+    importProvidersFrom(BrowserAnimationsModule, HttpClientModule),
+    provideAnimations()
 ]
   })

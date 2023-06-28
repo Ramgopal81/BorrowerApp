@@ -1,4 +1,9 @@
 <div class="container-fluid">
+  <div class="cls" style="background-color: rgb(12, 91, 137);;">
+    <h3>
+       Borrower Applicants
+    </h3>
+</div>
   <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
     <div class="card p-3 customCard">
       <div class="d-flex justify-content-end pt-1 pb-2">
@@ -7,14 +12,14 @@
       </div>
       <ngx-datatable class="bootstrap bgmatch" style="width: 100%" [rows]="applicantsData" [columnMode]="'flex'"
         [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10">
-        <ngx-datatable-column name="S.No." [flexGrow]="1" [resizeable]="false" >
+        <!-- <ngx-datatable-column name="S.No." [flexGrow]="1" [resizeable]="false" >
           <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
             <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
               {{ rowIndex + 1 }}
             </a>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Applicant Id" [flexGrow]="2" [resizeable]="false">
+        </ngx-datatable-column> -->
+        <ngx-datatable-column name="Applicant Id" [flexGrow]="1.5" [resizeable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <a class="nav-link" style="color: black; width: 447px; padding-left: 0" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                {{ row?.applicant_id }}
@@ -40,10 +45,17 @@
             </a>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Mobile No." [flexGrow]="2" [resizeable]="false">
+        <ngx-datatable-column name="Mobile No." [flexGrow]="1.5" [resizeable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
               {{ row?.applicant_mobile_no }}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Comapany Name" [flexGrow]="2" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.company_name }}
             </a>
           </ng-template>
         </ngx-datatable-column>

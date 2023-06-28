@@ -1,12 +1,8 @@
-<div>
+<div style="padding-left: 25px;">
   <div
     class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
     style="align-items: center"
-  >
-    <button type="button" class="btn btn-success"  (click)="back()" style="margin: 15px;">
-      Back
-    </button>
-  </div>
+  ></div>
   <div
     class="container-fluid"
     style="border: 15px solid rgb(223, 220, 220); padding-top: 0px"
@@ -14,7 +10,7 @@
     <div class="d-flex justify-content-center pt-2 pb-3">
       <h3>Applicant's Info</h3>
     </div>
-    
+
     <div class="row pt-3 pb-3">
       <div
         class="col-lg-6 col-md-6 col-sm-6 col-6"
@@ -81,25 +77,35 @@
           {{ borrowerDetail.aadhar_no }}
         </div>
         <div class="block">
-          <label> <strong>Pan no.</strong></label>
-          {{ borrowerDetail.pan_no }}
-        </div>
-        <div class="block">
-          <label> <strong>Account no.</strong></label>
-          {{ borrowerDetail.account_no }}
-        </div>
-        <div class="block">
           <label> <strong>Applicant Signature</strong></label>
-          <img [src]=signatureApplicant alt="Applicant Signature" width="400" height="400">
+          <img
+            [src]="signatureApplicant"
+            alt="Applicant Signature"
+            width="400"
+            height="400"
+          />
         </div>
         <div class="block">
           <label> <strong>Aadhar card</strong></label>
-          <img [src]=applicantAadhar alt="Aadhar card" width="400" height="400">
+          <img
+            [src]="applicantAadhar"
+            alt="Aadhar card"
+            width="400"
+            height="400"
+          />
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-        <div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-8 col-6">
+        <!-- <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-6"> -->
+            <div class="block">
+              <label> <strong>Pan no.</strong></label>
+              {{ borrowerDetail.pan_no }}
+            </div>
+            <div class="block">
+              <label> <strong>Account no.</strong></label>
+              {{ borrowerDetail.account_no }}
+            </div>
             <div class="block">
               <label> <strong>Land Owned</strong></label>
               {{ borrowerDetail.applicant_agr_land_owned }}
@@ -114,7 +120,7 @@
             </div>
             <div class="block">
               <label> <strong>Loan amount</strong></label>
-              {{ borrowerDetail.applicant_loan_amount }}
+              {{ borrowerDetail.loanAmount }}
             </div>
             <div class="block">
               <label> <strong>No. of Family Member:</strong></label>
@@ -152,31 +158,58 @@
               <label> <strong>House renovation expenses</strong></label>
               {{ borrowerDetail.house_renovation_expenses }}
             </div>
-            <div class="block" >
+            <div class="block">
               <label> <strong>Applicant Photo</strong></label>
-              <img [src]=applicantPhoto alt="Applicant photo" width="400" height="400">
+              <img
+                [src]="applicantPhoto"
+                alt="Applicant photo"
+                width="400"
+                height="400"
+              />
             </div>
             <div class="block">
               <label> <strong>Pan Card</strong></label>
-              <img [src]=applicantPan alt="Pan card" width="400" height="400">
+              <img
+                [src]="applicantPan"
+                alt="Pan card"
+                width="400"
+                height="400"
+              />
             </div>
-          </div>
-       
-        </div>
+          <!-- </div>
+        </div> -->
       </div>
     </div>
     <div
-    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
-    style="align-items: center"
-    *ngIf="validateButton==true"
-  >
-    <button type="button" class="btn btn-success"  (click)="authorise(authorisedButtonText)">
-      Approve Applicant
-    </button>
-    <button type="button" class="btn btn-danger" style="margin-left: 10px;" (click)="notAuthorise(authorisedButtonText)">
-      Reject Applicant
-    </button>
-  </div>
- 
+      class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+      style="align-items: center"
+    >
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="back()"
+        style="margin: 15px;background-color: rgb(12, 91, 137)"
+      >
+        Back
+      </button>
+      <div *ngIf="validateButton == true">
+        <button
+        style="background-color: rgb(12, 91, 137)"
+          type="button"
+          class="btn btn-success"
+          (click)="authorise(authorisedButtonText)"
+        >
+          {{buttonName}}
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          style="margin-left: 10px;background-color: rgb(12, 91, 137)"
+          (click)="notAuthorise(authorisedButtonText)"
+        >
+        {{buttonName1}}
+        </button>
+      </div>
+    </div>
   </div>
 </div>

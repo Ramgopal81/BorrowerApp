@@ -19,10 +19,16 @@ export class BorrowerDetailComponent implements OnInit {
   authorisedButtonText: string = '';
   validateButton: boolean = false;
   signatureApplicant: any;
-applicantPhoto:any
-applicantAadhar:any
-applicantPan:any
+  buttonName: any;
+  applicantPhoto: any;
+  applicantAadhar: any;
+  applicantPan: any;
+  approvedAmountCheck: any;
+  companyName: any;
+  buttonName1:any
   applicantType: any = sessionStorage.getItem('companyCode');
+  allowedAmount: any = sessionStorage.getItem('allowed');
+  currentAmount: any = sessionStorage.getItem('current');
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
@@ -45,46 +51,58 @@ applicantPan:any
                 console.log(response);
                 this.currCheckedId = response.applicant[0].applicant_id;
                 this.borrowerDetail = response.applicant[0];
-                
-                  if (
-                  (response.applicant[0].authorisation_status == '0' &&
-                    this.applicantType == 'AV') ||
-                  (response.applicant[0].authorisation_status == '1' &&
-                    this.applicantType == 'MK') ||
-                  (response.applicant[0].authorisation_status == '2' &&
-                    this.applicantType == 'SH')
+                this.approvedAmountCheck = parseInt(
+                  response.applicant[0].loanAmount
+                );
+                this.companyName = response.applicant[0].company_name;
+                console.log(typeof this.approvedAmountCheck);
+                console.log(typeof this.currentAmount);
+
+                if (
+                  response.applicant[0].authorisation_status == '0' &&
+                  this.applicantType == 'AV'
                 ) {
                   this.validateButton = true;
-                } else {
+                  this.buttonName = 'Approve Applicant'
+                  this.buttonName1 = 'Reject Applicant'
+                } else if (
+                  response.applicant[0].authorisation_status == '1' &&
+                  this.applicantType == 'MK'
+                ) {
+                  this.validateButton = true;
+                  this.buttonName = 'Authorise Applicant'
+                  this.buttonName1 = 'Unauthorise Applicant'
+                } else if (
+                  response.applicant[0].authorisation_status == '2' &&
+                  this.applicantType == 'SH'
+                ) {
+                  this.validateButton = true;
+                  this.buttonName = 'Approve Loan'
+                  this.buttonName1 = 'Reject Loan'
+                } else{
                   this.validateButton = false;
                 }
 
                 if (response.document) {
                   response.document.forEach((element: any) => {
-                    if (element.docName=="Applicant Signature") {
+                    if (element.docName == 'Applicant Signature') {
                       this.signatureApplicant =
-                      'data:image/png;base64,' +
-                      element.data;
+                        'data:image/png;base64,' + element.data;
                     }
-                    if (element.docName=="Applicant Photo") {
+                    if (element.docName == 'Applicant Photo') {
                       this.applicantPhoto =
-                      'data:image/png;base64,' +
-                      element.data;
+                        'data:image/png;base64,' + element.data;
                     }
-                    if (element.docName=="Aadhar Card") {
+                    if (element.docName == 'Aadhar Card') {
                       this.applicantAadhar =
-                      'data:image/png;base64,' +
-                      element.data;
+                        'data:image/png;base64,' + element.data;
                     }
-                    if (element.docName=="PAN Card") {
+                    if (element.docName == 'PAN Card') {
                       this.applicantPan =
-                      'data:image/png;base64,' +
-                      element.data;
+                        'data:image/png;base64,' + element.data;
                     }
-                  })
+                  });
                 }
-
-
               }
             },
             error: (err) => {
@@ -109,41 +127,50 @@ applicantPan:any
   // }
 
   authorise(authorisedButtonText: string) {
-    let dynamicCompanyCode: string = '';
-    if (this.applicantType == 'AV') {
-      dynamicCompanyCode = 'AV';
-    } else if (this.applicantType == 'MK') {
-      dynamicCompanyCode = 'MK';
-    } else if (this.applicantType == 'SH') {
-      dynamicCompanyCode = 'SH';
-    }
-    const authoriseJSON: AuthorisationFormModel = {
-      applicant_id: this.currCheckedId,
-      approval_status: 'Y',
-      company_code: dynamicCompanyCode,
-    };
-    this.apiService
-      .postauthorize(authoriseJSON)
-      .pipe()
-      .subscribe({
-        next: (response) => {
-          Swal.fire({
-            position: 'center',
-            icon: response.status ? 'success' : 'error',
-            title: response.message
-          }).then((response) => {
-            if (response.isConfirmed) {
-              if (response) {
-                this.router.navigate(['/pages/home']);
+    let num = parseInt(this.currentAmount);
+    console.log(typeof num);
+
+    if (num - this.approvedAmountCheck >= 0) {
+      let dynamicCompanyCode: string = '';
+      if (this.applicantType == 'AV') {
+        dynamicCompanyCode = 'AV';
+      } else if (this.applicantType == 'MK') {
+        dynamicCompanyCode = 'MK';
+      } else if (this.applicantType == 'SH') {
+        dynamicCompanyCode = 'SH';
+      }
+      const authoriseJSON: AuthorisationFormModel = {
+        applicant_id: this.currCheckedId,
+        approval_status: 'Y',
+        company_code: dynamicCompanyCode,
+        loan_amount: this.approvedAmountCheck,
+        applicant_company_code: this.companyName,
+      };
+      this.apiService
+        .postauthorize(authoriseJSON)
+        .pipe()
+        .subscribe({
+          next: (response) => {
+            Swal.fire({
+              position: 'center',
+              icon: response.status ? 'success' : 'error',
+              title: response.message,
+            }).then((response) => {
+              if (response.isConfirmed) {
+                if (response) {
+                  this.router.navigate(['/pages/home']);
+                }
               }
-            }
-          });
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {},
-      });
+            });
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => {},
+        });
+    } else {
+      Swal.fire('Insufficient Fund');
+    }
   }
 
   notAuthorise(authorisedButtonText: string) {
@@ -159,6 +186,8 @@ applicantPan:any
       applicant_id: this.currCheckedId,
       approval_status: 'N',
       company_code: dynamicCompanyCode,
+      loan_amount: this.approvedAmountCheck,
+      applicant_company_code: this.companyName,
     };
     this.apiService
       .postauthorize(authoriseJSON)
@@ -168,7 +197,7 @@ applicantPan:any
           Swal.fire({
             position: 'center',
             icon: response.status ? 'success' : 'error',
-            title: response.message
+            title: response.message,
           }).then((response) => {
             if (response.isConfirmed) {
               if (response) {

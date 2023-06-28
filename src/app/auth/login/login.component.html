@@ -1,29 +1,102 @@
-<div class="centerNumberDiv">
+<div
+  class="justifycontentend"
+  style="background-color: rgb(12, 91, 137); height: 100px"
+>
+  <div style="display: flex; justify-content: end; align-items: center">
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="d-flex justify-content-center pb-1 pt-4">
-        <h3>Approver  Login</h3>
-      </div>
-  
-      <div class="pt-3 pb-3" >
-        <div style="padding-left: 15px;padding-right: 15px;">
-          <input type="number" formControlName="mobile" placeholder="Mobile" class="form-control" onKeyPress="if(this.value.length==10) return false;" />
-        </div>
-        <div *ngIf="formSubmitted && loginForm.get('mobile')?.hasError('required')" style="color: red; padding-left: 15px">
-          Enter a valid mobile no.
-        </div>
-      </div>
-      <div class="pt-2 pb-1" >
-        <div  style="padding-left: 15px;padding-right: 15px;">
-          <input type="password" formControlName="pin" placeholder="M-Pin" class="form-control" />
-        </div>
-        <div *ngIf="formSubmitted && loginForm.get('pin')?.hasError('required')"
-          style="color: red; padding-left: 15px">
-          Enter pin
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center pt-3">
-        <button type="submit" class="btn btn-success">Login</button>
-      </div>
+      <input
+        style="justify-self: center; margin-top: 25px;border-radius: 5px;"
+        type="number"
+        formControlName="mobile"
+        placeholder="Mobile"
+       
+        onKeyPress="if(this.value.length==10) return false;"
+      />
+      <input
+        style="justify-self: center; margin-top: 20px; margin-left: 20px;border-radius: 5px;"
+        type="password"
+        formControlName="pin"
+        placeholder="M-Pin"
+       
+      />
+      <button
+        type="submit"
+        class="btn btn-success"
+        style="
+          margin-top: 0px;
+          margin-left: 20px;
+          background-color: rgb(12, 91, 137);
+        "
+      >
+        Sign in
+      </button>
+      <button
+      type="submit"
+      class="btn btn-success"
+      style="
+        margin-top: 0px;
+        margin-left: 20px;
+        background-color: rgb(12, 91, 137);
+      "
+      (click)="forgetPassword()"
+      >
+     Forget Pin
+    </button>
     </form>
   </div>
+</div>
+<div class="centerNumberDiv">
+  <h3>Welcome to Truckers Advance Authorisation System</h3>
+</div>
+
+<!-- <div class="centerNumberDiv">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="d-flex justify-content-center pb-1 pt-4">
+      <h3>Welcome to Borrower Authorisation Application</h3>
+    </div>
+
+    <div class="pt-3 pb-3">
+      <div style="padding-left: 15px; padding-right: 15px">
+        <input
+          type="number"
+          formControlName="mobile"
+          placeholder="Mobile"
+          class="form-control"
+          onKeyPress="if(this.value.length==10) return false;"
+        />
+      </div>
+      <div
+        *ngIf="formSubmitted && loginForm.get('mobile')?.hasError('required')"
+        style="color: red; padding-left: 15px"
+      >
+        Enter a valid mobile no.
+      </div>
+    </div>
+    <div class="pt-2 pb-1">
+      <div style="padding-left: 15px; padding-right: 15px">
+        <input
+          type="password"
+          formControlName="pin"
+          placeholder="M-Pin"
+          class="form-control"
+        />
+      </div>
+      <div
+        *ngIf="formSubmitted && loginForm.get('pin')?.hasError('required')"
+        style="color: red; padding-left: 15px"
+      >
+        Enter pin
+      </div>
+    </div>
+
+    <div
+      class="d-flex justify-content-center pt-3"
+      style="align-items: center"
+    >
+      <button type="submit" class="btn btn-success">Login</button>
+      <button type="button" class="btn btn-danger" style="margin-left: 10px" (click)="forgetPassword()">
+        Forget Mpin
+      </button>
+    </div>
+  </form>
+</div> -->

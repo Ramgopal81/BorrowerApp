@@ -1,0 +1,95 @@
+<div class="cls" style="background-color: rgb(12, 91, 137);">
+  <h3>
+      User Management
+  </h3>
+</div>
+<div class="centerNumberDiv">
+  <form [formGroup]="loginForm" (ngSubmit)="createUser()">
+    <div class="d-flex justify-content-center pb-1 pt-4">
+      <h3 style="color: black;">Create Authoriser User</h3>
+    </div>
+
+    <div class="pt-2 pb-1">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="First Name"
+            class="form-control"
+          />
+        </div>
+    </div>
+    <div class="pt-2 pb-1">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="Last Name"
+            class="form-control"
+          />
+        </div>
+    </div>
+    <div class="pt-3 pb-3">
+      <div style="padding-left: 15px; padding-right: 15px">
+        <input
+          type="number"
+          formControlName="mobile"
+          placeholder="Mobile"
+          class="form-control"
+          onKeyPress="if(this.value.length==10) return false;"
+        />
+      </div>
+      <div
+        *ngIf="formSubmitted && loginForm.get('mobile')?.hasError('required')"
+        style="color: red; padding-left: 15px"
+      >
+        Enter a valid mobile no.
+      </div>
+    </div>
+    <div class="pt-2 pb-1">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <label for="inputState1" class="form-label"> Company </label>
+            <select id="inputState1 " class="form-control" formControlName="company" name="company">
+            <option selected>Choose company</option>
+              <option *ngFor="let item of company" value="{{item.company_code}}">{{item.companyName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="pt-2 pb-1">
+      <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> User Type  </label>
+          <select id="inputState2 " class="form-control" formControlName="role" name="role">
+          <option selected>Choose Role</option>
+            <option *ngFor="let item of userType" value="{{item.id}}">{{item.name}}</option>
+          </select>
+      </div>
+  </div>
+    
+   
+    <div class="pt-2 pb-1">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            class="form-control"
+          />
+        </div>
+    </div>
+
+    <!-- <div class="d-flex justify-content-center pt-3">
+      <button type="submit" class="btn btn-success">Login</button>
+    </div> -->
+    <div
+      class="d-flex justify-content-center pt-3"
+      style="align-items: center"
+    >
+    <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="back()">
+      Back
+    </button>
+      <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="createUser()">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

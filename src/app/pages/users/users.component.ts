@@ -1,31 +1,35 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  AuthorisationFormModel,
-  Authorize,
-  Detail,
-} from 'src/app/models/dataModel';
 import { Router } from '@angular/router';
+import { ColumnMode, NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ApiService } from 'src/app/services/api.service';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { ColumnMode } from '@swimlane/ngx-datatable';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ApplicantsResponseModel } from 'src/app/models/api-responseModel';
+import { ApplicantsResponseModel, UsersResponseModel } from 'src/app/models/api-responseModel';
+import { Authorize, Detail } from 'src/app/models/dataModel';
 import { debounceTime, fromEvent, map } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+
 @Component({
-  selector: 'app-home',
+  selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule,NgxDatatableModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  imports: [CommonModule,NgxDatatableModule,FormsModule],
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class HomeComponent implements OnInit,AfterViewInit{
+export class UsersComponent implements OnInit,AfterViewInit{
+
+  reorderable = true;
+  ColumnMode = ColumnMode;
+
+  
+
   @ViewChild("filterInput") filterInput!: any;
   detail: Detail = new Detail();
   authorize: Authorize = new Authorize();
   currRadioCheckedId: any;
-  applicantsData!: ApplicantsResponseModel[];
-  tempArray!:ApplicantsResponseModel[];
+  userData!: UsersResponseModel[];
+  tempArray!:UsersResponseModel[];
+  userId:any 
+  loadingIndicator = true;
   applicantType:any =  sessionStorage.getItem('companyCode')
   constructor(private router: Router, private apiService: ApiService) {}
   users: any = [];
@@ -36,7 +40,6 @@ export class HomeComponent implements OnInit,AfterViewInit{
   ngOnInit(): void {
     this.getApplicationData()
 console.log(this.applicantType);
-
   }
 
   ngAfterViewInit(): void {
@@ -51,8 +54,6 @@ console.log(this.applicantType);
   }
 
   handleCheck(event: any, userName: string) {
-    //   let d = document.getElementById('ram') as HTMLElement
-    // console.log(d);
     console.log(event.target.checked);
     if (event.target.checked) {
       this.users.push(userName);
@@ -68,10 +69,39 @@ console.log(this.applicantType);
     console.log(this.users);
   }
 
-  viewBorrowerDetail(id: string) {
-    this.router.navigate(['pages/borrowerDetails'], {
+  viewBorrowerDetail(id: any) {
+    this.router.navigate(['pages/modifyUser'], {
       queryParams: { id: id },
     });
+  }
+
+  createUser(){
+    this.router.navigate(['pages/createUser'])
+  }
+  modifyUser(){
+   
+      sessionStorage.setItem('userId',this.userId)
+   this.router.navigate(['pages/modifyUser'])
+    
+  }
+
+  deleteUser(){
+      this.apiService
+      .postDelete(this.userId)
+      .pipe()
+      .subscribe({
+        next: (response) => {
+          if (response) {
+          console.log(response);
+          
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {},
+      });
+    
   }
 
   checkRadio(authorisation_status: any, applicant_id: any) {
@@ -89,13 +119,13 @@ console.log(this.applicantType);
 
   getApplicationData(){
     this.apiService
-    .postDetails('AV')
+    .postuserDetails()
     .pipe()
     .subscribe({
       next: (response) => {
         if (response) {
-          this.applicantsData= this.tempArray = response.applicant;
-          console.log(this.applicantsData);
+          this.userData= this.tempArray = response.user;
+          console.log(this.userData[0]);
         }
       },
       error: (err) => {
@@ -111,15 +141,16 @@ console.log(this.applicantType);
     const keys = Object.keys(this.tempArray[0]);
     console.log(keys);
     
+    
     //@ts-ignore
-    this.applicantsData = this.tempArray.filter((item: any) => {
+    this.userData = this.tempArray.filter((item: any) => {
       // iterate through each row's [currently only name] column data
       for (let i = 0; i < count; i++) {
         
         // check for a match
         if (
-          (item?.applicant_firstname &&
-            item?.applicant_firstname
+          (item?.firstname &&
+            item?.firstname
               .toString()
               .toLowerCase()
               .indexOf(filterKey) !== -1) ||
@@ -131,30 +162,4 @@ console.log(this.applicantType);
       }
     });
   }
-  // authorizeApplicant(){
-  //   this.authorize.applicant_id = this.users
-  //   this.authorize.authorized_by = this.authorizeBy
-  //   this.authorize.company_Name = this.companyName
-  //   this.service.postauthorize(this.authorize).subscribe((result) => {
-
-  //     Swal.fire({
-  //       position: 'center',
-  //       icon: result.status ? 'success' : 'error',
-  //       title: result.message,
-  //       // confirmButtonText: result.status
-  //       //   ? 'Proceed to Psychometric Question'
-  //       //   : 'Proceed to next Application',
-  //       showCloseButton: true,
-  //     }).then((response) => {
-  //       if (response.isConfirmed) {
-  //         if (result.status) {
-  //           // this.router.navigate(['/pages/dashboard']);
-  //         }
-  //         //  else {
-  //         //   this.router.navigate(['/basic']);
-  //         // }
-  //       }
-  //     });
-  //   });
-  // }
 }

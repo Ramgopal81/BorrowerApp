@@ -118,3 +118,15 @@ export interface ApplicantsResponseModel {
   av_approval: any;
   sh_approval: any;
 }
+
+export interface UsersResponseModel {
+  company_name:any
+  email_id: any
+  firstname:any
+  lastname:any
+  mobile_no:any
+  password:any
+  role:any
+  user_id:any
+}
+
