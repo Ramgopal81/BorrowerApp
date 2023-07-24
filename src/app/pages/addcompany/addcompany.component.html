@@ -1,0 +1,79 @@
+<div class="cls" style="background-color: rgb(12, 91, 137);">
+    <h3>
+        Company Management
+    </h3>
+  </div>
+  <div class="centerNumberDiv">
+    <form [formGroup]="loginForm" (ngSubmit)="createUser()">
+      <div class="d-flex justify-content-center pb-1 pt-4">
+        <h3 style="color: black;">Add Comapny</h3>
+      </div>
+      <div class="pt-2 pb-1">
+          <div style="padding-left: 15px; padding-right: 15px">
+            <label for="inputState2" class="form-label"> Company Code  </label> <span style="color: red;"> *</span>
+            <input
+              type="text"
+              formControlName="companyCode"
+              placeholder="Company Code"
+              class="form-control"
+              maxlength="10"
+            />
+          </div>
+      </div>
+      <div class="pt-3 pb-3">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <label for="inputState2" class="form-label"> Company Name  </label> <span style="color: red;"> *</span>
+          <input
+            type="text"
+            formControlName="companyName"
+            placeholder="Company Name"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+      </div>
+      
+      <div class="pt-2 pb-1">
+          <div style="padding-left: 15px; padding-right: 15px">
+            <label for="inputState2" class="form-label"> Company Address  </label> <span style="color: red;"> *</span>
+            <textarea
+              type="text"
+              formControlName="companyAddress"
+              placeholder="Company Address"
+              class="form-control"
+              maxlength="100"
+              rows="3"
+            >
+          </textarea>
+          </div>
+      </div>
+      <div class="pt-2 pb-1">
+        <div style="padding-left: 15px; padding-right: 15px">
+          <label for="inputState2" class="form-label"> Allowed Amount  </label> <span style="color: red;"> *</span>
+          <input
+            type="number"
+            formControlName="allowedAmount"
+            placeholder="Allowed Amount"
+            class="form-control"
+            [maxlength]="10"
+          />
+        </div>
+    </div>
+  
+      <!-- <div class="d-flex justify-content-center pt-3">
+        <button type="submit" class="btn btn-success">Login</button>
+      </div> -->
+      <div
+        class="d-flex justify-content-center pt-3"
+        style="align-items: center"
+      >
+      <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="back()">
+        Back
+      </button>
+        <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="createUser()">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+  

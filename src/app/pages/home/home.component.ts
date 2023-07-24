@@ -95,7 +95,38 @@ console.log(this.applicantType);
       next: (response) => {
         if (response) {
           this.applicantsData= this.tempArray = response.applicant;
-          console.log(this.applicantsData);
+          if (response.applicant) {
+            response.applicant.forEach((element: any) => {
+              if (element.applicant_id) {
+                element.applicant_id = this.apiService.decryptionAES(element.applicant_id);
+              }
+              if (element.applicant_firstname) {
+                element.applicant_firstname = this.apiService.decryptionAES(element.applicant_firstname);
+              }
+              if (element.applicant_lastname) {
+                element.applicant_lastname = this.apiService.decryptionAES(element.applicant_lastname);
+              }
+              if (element.applicant_email_id) {
+                element.applicant_email_id = this.apiService.decryptionAES(element.applicant_email_id);
+              }
+              if (element.company_name) {
+                element.company_name = this.apiService.decryptionAES(element.company_name);
+              }
+              if (element.applicant_mobile_no) {
+                element.applicant_mobile_no = this.apiService.decryptionAES(element.applicant_mobile_no);
+              }
+              if (element.av_approval) {
+                element.av_approval = this.apiService.decryptionAES(element.av_approval);
+              }
+              if (element.mk_approval) {
+                element.mk_approval = this.apiService.decryptionAES(element.mk_approval);
+              }
+              if (element.sh_approval) {
+                element.sh_approval = this.apiService.decryptionAES(element.sh_approval);
+              }
+            
+            });
+          }
         }
       },
       error: (err) => {

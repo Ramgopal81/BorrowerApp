@@ -35,9 +35,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AddUserModel, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, UserDetail } from '../models/dataModel';
+import { AddCompanyModel, AddUserModel, AdvanceTrigger, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, UserDetail } from '../models/dataModel';
 import { Observable } from 'rxjs';
-
+import * as CryptoJS from 'crypto-js';
 
 
 @Injectable({
@@ -47,12 +47,40 @@ export class ApiService {
   private API_URL = environment.API_URL;
   constructor( private http: HttpClient) {}
 
-  login(mobile:number,pin:number){
+  
+  appProperties = {
+    VALUES: {
+      KEY: '1234567890123456',
+      IV: '8fdfdb7245c044279078ea1966a096fa',
+    },
+  };
+  encryptionAES(encryptStr: any) {
+    // Encrypt
+    const ciphertext = CryptoJS.AES.encrypt(encryptStr, '1234567890123456');
+    return ciphertext.toString();
+  }
+  decryptionAES(decryptStr: any) {
+    // Decrypt
+    const bytes = CryptoJS.AES.decrypt(decryptStr, '1234567890123456');
+    const plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    return plaintext;
+  }
+
+  login(mobile:any,pin:any){
     return this.http.post<any>(`${this.API_URL}/user/loginPost/v1`,{mobile_no:mobile,password:pin})
   }
 
   postDetails(company_code: string): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/applicant/borrower/findAllApplicant/v1`, {company_code:company_code}, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+
+  postDashboard(company_code: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/applicant/borrower/Dashboard`, {company_code:company_code}, {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
               }),
@@ -78,6 +106,22 @@ export class ApiService {
   }
   postcompanyDetails(): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/user/GetAllCompany_name`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+  postcompanyName(company_id:string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/applicant/borrower/company/get_companyById`, {company_id:company_id},{
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+  postDeleteCompany(company_id: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/applicant/borrower/company/delete_company`, {company_id:company_id}, {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
               }),
@@ -110,7 +154,15 @@ export class ApiService {
       }),
     
     });
-  
+  }
+
+  postAdvanceDetail(advanceSave: AdvanceTrigger): Observable<any> {
+    return this.http.post(`${this.API_URL}/borrower/SaveadvanceTrigger`, advanceSave, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
   }
 
   postAddUser(addUser: AddUserModel): Observable<any> {
@@ -131,6 +183,17 @@ export class ApiService {
     });
   
   }
+
+  postAddCompany(addCompany: AddCompanyModel): Observable<any> {
+    return this.http.post(`${this.API_URL}/applicant/borrower/company/add_modify_company`, addCompany, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+
   postResetPass(resetPass: ResetPass): Observable<any> {
     return this.http.post(`${this.API_URL}/user/change_password`, resetPass, {
       headers: new HttpHeaders({

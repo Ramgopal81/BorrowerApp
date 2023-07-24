@@ -59,15 +59,15 @@ export class ModifyUserComponent {
   modifyUser() {
     if (this.loginForm.valid) {
     const modifyUserJSON: ModifyUserModel = {
-      user_id: this.userId,
-      firstname: this.loginForm.value.firstName,
-      lastname:this.loginForm.value.lastName,
-      role:this.loginForm.value.role,
+      user_id: this.apiService.encryptionAES(this.userId),
+      firstname: this.apiService.encryptionAES(this.loginForm.value.firstName),
+      lastname:this.apiService.encryptionAES(this.loginForm.value.lastName),
+      role:this.apiService.encryptionAES(this.loginForm.value.role),
       companyName:'',
-      email_id:this.loginForm.value.email,
-      password:this.loginForm.value.pin,
-      mobile_no:this.loginForm.value.mobile,
-      company_code:this.loginForm.value.company,
+      email_id:this.apiService.encryptionAES(this.loginForm.value.email),
+      password:this.apiService.encryptionAES(this.loginForm.value.pin),
+      mobile_no:this.apiService.encryptionAES(this.loginForm.value.mobile),
+      company_code:this.apiService.encryptionAES(this.loginForm.value.company),
       admin:false,
       bc_agent:false,
       otp:''

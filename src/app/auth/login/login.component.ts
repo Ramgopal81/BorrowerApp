@@ -38,10 +38,11 @@ constructor(private fb: FormBuilder, private router: Router,private apiService:A
 
 
 onLogin() {
+  console.log(this.apiService.encryptionAES('Ram'))
   this.formSubmitted = true;
   if (this.loginForm.valid) {
-    const mobile = this.loginForm.get("mobile")?.value;
-    const pin = this.loginForm.get("pin")?.value;
+    const mobile = this.apiService.encryptionAES(this.loginForm.value.mobile);
+    const pin = this.apiService.encryptionAES(this.loginForm.value.pin);
 
     if (mobile && pin) {
 
@@ -65,7 +66,7 @@ console.log(this.applicantType);
 const token = 'ram578hshjsaghhdcd'
       this._authService.processingData(token);
       if(response.user.is_first_login == 'N'){
-        this.router.navigate(["deleteUser"]);
+        this.router.navigate(["dashboard"]);
       }else if(response.user.is_first_login == 'Y'){
         this.router.navigate(["reset"]);
       }

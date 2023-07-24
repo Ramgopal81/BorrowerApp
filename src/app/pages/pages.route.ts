@@ -9,6 +9,11 @@ import { CreateUserComponent } from "./users/create-user/create-user.component";
 import { ModifyUserComponent } from "./users/modify-user/modify-user.component";
 import { DeleteUserComponent } from "./users/delete-user/delete-user.component";
 import { ResetComponent } from "./reset/reset.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { CompanydetailComponent } from "./companydetail/companydetail.component";
+import { AddcompanyComponent } from "./addcompany/addcompany.component";
+import { ModifycompanyComponent } from "./modifycompany/modifycompany.component";
+import { AdvanceComponent } from "./advance/advance.component";
 
 
 export const PAGES_ROUTE: Route[] = [
@@ -53,6 +58,26 @@ export const PAGES_ROUTE: Route[] = [
         {
           "path":"reset",
           component:ResetComponent
+        },
+        {
+          "path":"dashboard",
+          component:DashboardComponent
+        },
+        {
+          "path":"companyDetail",
+          component:CompanydetailComponent
+        },
+        {
+          "path":"addCompany",
+          component:AddcompanyComponent
+        },
+        {
+          "path":"modifyCompany",
+          component:ModifycompanyComponent
+        },
+        {
+          "path":"advance",
+          component:AdvanceComponent
         },
       
 

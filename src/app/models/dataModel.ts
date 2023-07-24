@@ -72,3 +72,31 @@ export interface ForgetPass{
   new_password:string|null
   mobile_no:string|null
 }
+
+export interface AddCompanyModel{
+    company_id: string|null,
+    company_code: string,
+    company_name: string,
+    company_address: string,
+    allowed_amount: string
+  
+}
+
+export interface AdvanceTrigger{
+  applicant_id: string,
+  from_location: string,
+  to_location: string,
+  start_date_journey: string,
+  end_date_journey_expected: string,
+  advance_amount: string,
+  return_date_amount_expected: string,
+  truck_number: string,
+  raised_user_id: string,
+  approved_user_id: string,
+  account_no: string,
+  ifsc_code: string,
+  approved_amount: string,
+  comment_by_mk: string,
+  commenyt_by_sh: string,
+  approval_status: string
+}

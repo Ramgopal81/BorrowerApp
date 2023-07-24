@@ -63,7 +63,7 @@ export class BorrowerDetailComponent implements OnInit {
                   this.applicantType == 'AV'
                 ) {
                   this.validateButton = true;
-                  this.buttonName = 'Approve Applicant'
+                  this.buttonName = 'Verify Applicant'
                   this.buttonName1 = 'Reject Applicant'
                 } else if (
                   response.applicant[0].authorisation_status == '1' &&
@@ -71,7 +71,7 @@ export class BorrowerDetailComponent implements OnInit {
                 ) {
                   this.validateButton = true;
                   this.buttonName = 'Authorise Applicant'
-                  this.buttonName1 = 'Unauthorise Applicant'
+                  this.buttonName1 = 'Reject Applicant'
                 } else if (
                   response.applicant[0].authorisation_status == '2' &&
                   this.applicantType == 'SH'

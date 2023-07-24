@@ -87,7 +87,7 @@ console.log(this.applicantType);
 
   deleteUser(){
       this.apiService
-      .postDelete(this.userId)
+      .postDelete(this.apiService.encryptionAES(this.userId))
       .pipe()
       .subscribe({
         next: (response) => {
@@ -125,7 +125,32 @@ console.log(this.applicantType);
       next: (response) => {
         if (response) {
           this.userData= this.tempArray = response.user;
-          console.log(this.userData[0]);
+          if (response.user) {
+            response.user.forEach((element: any) => {
+              if (element.user_id) {
+                element.user_id = this.apiService.decryptionAES(element.user_id);
+              }
+              if (element.firstname) {
+                element.firstname = this.apiService.decryptionAES(element.firstname);
+              }
+              if (element.lastname) {
+                element.lastname = this.apiService.decryptionAES(element.lastname);
+              }
+              if (element.email_id) {
+                element.email_id = this.apiService.decryptionAES(element.email_id);
+              }
+              if (element.mobile_no) {
+                element.mobile_no = this.apiService.decryptionAES(element.mobile_no);
+              }
+              if (element.companyName) {
+                element.companyName = this.apiService.decryptionAES(element.companyName);
+              }
+              if (element.company_code) {
+                element.company_code = this.apiService.decryptionAES(element.company_code);
+              }
+            
+            });
+          }
         }
       },
       error: (err) => {

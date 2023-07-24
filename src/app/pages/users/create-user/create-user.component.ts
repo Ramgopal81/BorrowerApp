@@ -75,14 +75,14 @@ export class CreateUserComponent {
     if (this.loginForm.valid) {
     const addUserJSON: AddUserModel = {
       user_id:'',
-      company_code:this.loginForm.value.company,
-      firstname: this.loginForm.value.firstName,
-      lastname:this.loginForm.value.lastName,
-      role:this.loginForm.value.role,
+      company_code:this.apiService.encryptionAES(this.loginForm.value.company),
+      firstname: this.apiService.encryptionAES(this.loginForm.value.firstName),
+      lastname:this.apiService.encryptionAES(this.loginForm.value.lastName),
+      role:this.apiService.encryptionAES(this.loginForm.value.role),
       companyName:'',
-      email_id:this.loginForm.value.email,
+      email_id:this.apiService.encryptionAES(this.loginForm.value.email),
       password:'',
-      mobile_no:this.loginForm.value.mobile,
+      mobile_no:this.apiService.encryptionAES(this.loginForm.value.mobile),
       otp:'',
       admin:false,
       bc_agent:false

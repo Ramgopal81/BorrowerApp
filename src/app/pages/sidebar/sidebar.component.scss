@@ -53,7 +53,7 @@
     }
   
     background: rgb(12, 91, 137);
-    color: #6d6e7e;
+    color: white;
   
     .header {
       display: flex;
@@ -65,7 +65,7 @@
   
       h1 {
         font-size: 20px;
-        color: #6d6e7e;
+        color: white;
         margin: 0;
         flex: 1;
         transition: 0.3s;
@@ -74,7 +74,7 @@
       }
   
       .chevron {
-        color: #6d6e7e;
+        color: white;
         cursor: pointer;
         transition: 0.3s;
         margin-left: -25px;
@@ -146,7 +146,7 @@
           .title {
             flex: 1;
             // display: none;
-            color: #6d6e7e;
+            color: white;
             transition: 0.3s;
             max-width: 0px;
             overflow: hidden;

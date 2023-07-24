@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div class="cls" style="background-color: rgb(12, 91, 137);;">
+        <h3>
+          List Of Company 
+        </h3>
+    </div>
+    <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
+        <div class="card p-3 customCard">
+          <!-- <div class="d-flex justify-content-end pt-1 pb-2">
+            <input type="text" class="form-control" #filterInput placeholder="Filter" style="width: 200px" />
+    
+          </div> -->
+          <ngx-datatable class="bootstrap bgmatch"  style="width: 100%" [rows]="company" [columnMode]="'flex'"
+            [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="8" [columnMode]="'flex'">
+            <!-- <ngx-datatable-column name="Select" [flexGrow]="1" [resizeable]="false" >
+              <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+                <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+                  {{ rowIndex + 1 }}
+                </a>
+              </ng-template>
+            </ngx-datatable-column> -->
+            <ngx-datatable-column name="Select" [flexGrow]="1" [resizeable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="nav-link" style="color: black; width: 447px; padding-left: 0" >
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="{{row?.company_id}}" [(ngModel)]="companyId">
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+            <hr />
+            
+            <ngx-datatable-column name="Company Id" [flexGrow]="2" [resizeable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="nav-link tableAtag disableTextSelection" >
+                  <span> {{ row?.company_id | titlecase }}</span>
+                  <!-- <span style="padding-left: 5px">
+                    {{ row?.lastname | titlecase }}</span> -->
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Company Code" [flexGrow]="3" [resizeable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="nav-link tableAtag disableTextSelection" >
+                  {{ row?.company_code }}
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Company Name" [flexGrow]="2" [resizeable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="nav-link tableAtag disableTextSelection" >
+                  {{ row?.companyName }}
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Allowed Amount" [flexGrow]="1.5" [resizeable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="nav-link tableAtag disableTextSelection" >
+                  {{ row?.allowed_amount }}
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Current Amount" [flexGrow]="1.5" [resizeable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <a class="nav-link tableAtag disableTextSelection" >
+                    {{ row?.current_amount }}
+                  </a>
+                </ng-template>
+              </ngx-datatable-column>
+           
+          </ngx-datatable>
+        </div>
+      </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+   
+    <div >
+      <button
+        type="button"
+        class="btn btn-success"
+        style="margin-left: 60px; background-color: rgb(12, 91, 137);"
+        (click)="addCompany()"
+      >
+        Add Company
+      </button>
+      <button
+        type="button"
+        class="btn btn-success"
+        style="margin: 10px; background-color: rgb(12, 91, 137);"
+        (click)="modifyCompany()"
+      >
+       Modify Company
+      </button>
+      <button
+      type="button"
+      class="btn btn-danger"
+    (click)="deleteCompany()"
+      style="margin: 10px; background-color:rgb(12, 91, 137) ;"
+    >
+     Delete
+    </button>
+    </div>
+  </div>
+      </div>

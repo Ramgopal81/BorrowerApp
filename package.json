@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "lite-server"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@auth0/angular-jwt": "^5.1.2",
+    "@canvasjs/angular-charts": "^1.0.3",
     "@material/card": "^14.0.0",
     "@ng-bootstrap/ng-bootstrap": "^15.0.0",
     "@popperjs/core": "^2.11.6",
@@ -28,6 +30,9 @@
     "angular-material-sidenav-rnd": "^0.1.0",
     "bootstrap": "^5.2.3",
     "bootstrap-drawer": "^1.0.6",
+    "crypto-js": "^4.1.1",
+    "mdb-angular-ui-kit": "^5.0.0",
+    "nginx": "^1.0.8",
     "ngx-pagination": "^6.0.3",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
@@ -41,6 +46,7 @@
     "@angular/cli": "~16.0.2",
     "@angular/compiler-cli": "^16.0.0",
     "@angular/localize": "^16.0.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
@@ -48,6 +54,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "lite-server": "^2.6.1",
+    "ngx-deploy-npm": "^6.0.0",
     "typescript": "~5.0.2"
   }
 }

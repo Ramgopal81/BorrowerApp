@@ -2,22 +2,53 @@
   class="justifycontentend"
   style="background-color: rgb(12, 91, 137); height: 100px"
 >
-  <div style="display: flex; justify-content: end; align-items: center">
+  <!-- <p>Hi</p> -->
+  <span style="display: flex; justify-content: end; align-items: center">
+    <h5
+      style="
+        margin-right: 150px;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        color: aliceblue;
+        margin-top: 30px;
+      "
+    >
+      TAA Online
+    </h5>
+    <img
+      src="../../../assets/Arthavedika.png"
+      style="height: 45px; margin-top: 25px"
+      alt=""
+    />
+    <img
+      src="../../../assets/682-6829362_wipro-logo-png.png"
+      style="height: 45px; margin-top: 25px"
+      alt="Makespay.png"
+    />
+    <img
+      src="../../../assets/Arthavedika.png"
+      style="height: 45px; margin-top: 25px; margin-right: 100px"
+      alt="shareindia.png"
+    />
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <input
-        style="justify-self: center; margin-top: 25px;border-radius: 5px;"
-        type="number"
+        style="justify-self: center; margin-top: 25px; border-radius: 5px"
+        type="text"
         formControlName="mobile"
         placeholder="Mobile"
-       
         onKeyPress="if(this.value.length==10) return false;"
       />
       <input
-        style="justify-self: center; margin-top: 20px; margin-left: 20px;border-radius: 5px;"
+        style="
+          justify-self: center;
+          margin-top: 20px;
+          margin-left: 20px;
+          border-radius: 5px;
+        "
         type="password"
         formControlName="pin"
         placeholder="M-Pin"
-       
       />
       <button
         type="submit"
@@ -31,22 +62,30 @@
         Sign in
       </button>
       <button
-      type="submit"
-      class="btn btn-success"
-      style="
-        margin-top: 0px;
-        margin-left: 20px;
-        background-color: rgb(12, 91, 137);
-      "
-      (click)="forgetPassword()"
+        type="submit"
+        class="btn btn-success"
+        style="
+          margin-top: 0px;
+          margin-left: 20px;
+          background-color: rgb(12, 91, 137);
+        "
+        (click)="forgetPassword()"
       >
-     Forget Pin
-    </button>
+        Forget Pin
+      </button>
     </form>
-  </div>
+  </span>
 </div>
 <div class="centerNumberDiv">
-  <h3>Welcome to Truckers Advance Authorisation System</h3>
+  <h3 style="color: rgb(12, 91, 137);font-size: 35px;">Welcome to Truckers Advance Authorisation System</h3>
+  <p style="width: 85%; font-size: 25px; margin-top: 25px;margin-left: 10px;font-family: serif;align-items:last baseline;">
+    Welcome to truckers authorisation application. This application is developed
+    for users to authorize the applicant and to make the loan approval system
+    easier. There is a three step verification for loan authorisation by
+    Arthavedika, Makespay and Shareindia. Once the application is reviewed by
+    all, applicant’s loan is approved. This also include user management to add,
+    modify or delete a user.
+  </p>
 </div>
 
 <!-- <div class="centerNumberDiv">

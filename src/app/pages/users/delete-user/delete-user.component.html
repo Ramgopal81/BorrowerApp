@@ -1,3 +1,86 @@
-<div class="centerNumberDiv">
-  <h3>Welcome to Truckers Advance Authorisation System</h3>
+<!-- <div class="centerNumberDiv"> -->
+  <!-- <h3>Welcome to Truckers Advance Authorisation System</h3> -->
+  <!-- <div style="justify-content: center; align-items: center;display: flex;margin-right: 150px;">
+  <h3 >Dashboard</h3>
+</div>
+  <table class="table table-striped" style=" width: 80%;">
+    <thead style=" background-color: rgb(12, 91, 137);color: white;border: 2px solid black;">
+      <tr>
+      <th scope="col">Total Applicants</th>
+      <th scope="col">Pending for Verification</th>
+      <th scope="col">Verified Today</th>
+      <th scope="col">Total Verified</th>
+      <th scope="col">Total Rejected</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of rows">
+        <td>{{item.total_applicants}}</td>
+        <td>{{item.pending_for_verification}}</td>
+        <td>{{item.verified_today}}</td>
+        <td>{{item.total_verified}}</td>
+        <td>{{item.total_rejected}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+</div>
+</div> -->
+
+<div class="container">
+  <div style="justify-content: center;align-items: center; display: flex;">
+  <h3 >Welcome to Truckers Advance Authorisation System</h3>
+</div>
+ <div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-9 col-6 customTopHW">
+
+    <div class="row" style="margin-top: 100px;">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+
+        <div class="tablebox2">
+          <!-- <h3>Applicants Detail</h3> -->
+          <table class="table table-striped" style=" width: 80%;">
+            <thead style=" background-color: rgb(12, 91, 137);color: white;border: 2px solid black;">
+              <tr>
+              <th scope="col">Total Applicants</th>
+              <th scope="col">Pending for Verification</th>
+              <th scope="col">Verified Today</th>
+              <th scope="col">Total Verified</th>
+              <th scope="col">Total Rejected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of rows">
+                <td>{{item.total_applicants}}</td>
+                <td>{{item.pending_for_verification}}</td>
+                <td>{{item.verified_today}}</td>
+                <td>{{item.total_verified}}</td>
+                <td>{{item.total_rejected}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+        <div class="tablebox2">
+        
+          <div>
+            <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+
+ 
+
+  </div>
+
+ </div>
 </div>
