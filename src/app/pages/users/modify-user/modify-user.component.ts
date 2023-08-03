@@ -33,10 +33,7 @@ export class ModifyUserComponent {
         '',
         [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
       ],
-      pin: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(4)],
-      ],
+    
       email: [
         '',
         [
@@ -54,10 +51,22 @@ export class ModifyUserComponent {
   ngOnInit(): void {
     this.getUserData()
     this.getcompanyData()
+    console.log(this.apiService.decryptionAES('U2FsdGVkX1+bKMc6kCNRKRqk0c0qm+QWS31hZ+W2z8I='));
+    
   }
 
   modifyUser() {
     if (this.loginForm.valid) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, save it!',
+      }).then((response) => {
+        if (response.isConfirmed) {
     const modifyUserJSON: ModifyUserModel = {
       user_id: this.apiService.encryptionAES(this.userId),
       firstname: this.apiService.encryptionAES(this.loginForm.value.firstName),
@@ -65,7 +74,7 @@ export class ModifyUserComponent {
       role:this.apiService.encryptionAES(this.loginForm.value.role),
       companyName:'',
       email_id:this.apiService.encryptionAES(this.loginForm.value.email),
-      password:this.apiService.encryptionAES(this.loginForm.value.pin),
+      password:this.apiService.encryptionAES(''),
       mobile_no:this.apiService.encryptionAES(this.loginForm.value.mobile),
       company_code:this.apiService.encryptionAES(this.loginForm.value.company),
       admin:false,
@@ -77,23 +86,22 @@ export class ModifyUserComponent {
       .pipe()
       .subscribe({
         next: (response) => {
-          Swal.fire({
-            position: 'center',
-            icon: response.status ? 'success' : 'error',
-            title: response.message
-          }).then((response) => {
-            if (response.isConfirmed) {
-              if (response) {
-                this.router.navigate(['/pages/users']);
-              }
-            }
-          });
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {},
+          if(this.apiService.decryptionAES(response.status) == 'false'){
+          Swal.fire('unsaved', 'Your detail has not been saved.', 'error');
+        }else{
+          Swal.fire('Saved', 'Your detail has been saved.', 'success');
+        }
+      
+      },
+        // error: (err) => {
+        //   console.log(err);
+        // },
+        // complete: () => {},
+        
       });
+     
+    }
+  });
   }
     console.log(this.loginForm);
   }
@@ -101,7 +109,7 @@ export class ModifyUserComponent {
   
     getUserData(){
       const detailJSON:UserDetail = {
-        user_id:this.userId
+        user_id:this.apiService.encryptionAES(this.userId)
       }
       this.apiService
       .postUserDetail(detailJSON)
@@ -110,13 +118,13 @@ export class ModifyUserComponent {
         next: (response) => {
           if (response) {
            console.log(response);
-           this.loginForm.controls['email'].setValue(response.user.email_id);
-           this.loginForm.controls['firstName'].setValue(response.user.firstname);
-           this.loginForm.controls['lastName'].setValue(response.user.lastname);
-           this.loginForm.controls['mobile'].setValue(response.user.mobile_no);
-           this.loginForm.controls['company'].setValue(response.user.companyName);
-           this.loginForm.controls['role'].setValue(response.user.role);
-           this.loginForm.controls['pin'].setValue(response.user.password);
+           this.loginForm.controls['email'].setValue(this.apiService.decryptionAES(response.user.email_id));
+           this.loginForm.controls['firstName'].setValue(this.apiService.decryptionAES(response.user.firstname));
+           this.loginForm.controls['lastName'].setValue(this.apiService.decryptionAES(response.user.lastname));
+           this.loginForm.controls['mobile'].setValue(this.apiService.decryptionAES(response.user.mobile_no));
+           this.loginForm.controls['company'].setValue(this.apiService.decryptionAES(response.user.companyName));
+           this.loginForm.controls['role'].setValue(this.apiService.decryptionAES(response.user.role));
+           
           }
         },
         error: (err) => {
@@ -137,6 +145,16 @@ export class ModifyUserComponent {
         next: (response) => {
           if (response) {
             this.company= response.company;
+            if (response.company) {
+              response.company.forEach((element: any) => {
+                if (element.company_name) {
+                  element.company_name = this.apiService.decryptionAES(
+                    element.company_name
+                  );
+                }
+                
+              });
+            }
             console.log(this.company);
           }
         },

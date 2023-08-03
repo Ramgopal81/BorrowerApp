@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="cls" style="background-color: rgb(12, 91, 137);;">
+      <h3>
+         List of Travel Approval Detail
+      </h3>
+  </div>
+    <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
+      <div class="card p-3 customCard">
+        <div class="d-flex justify-content-end pt-1 pb-2">
+          <input type="text" class="form-control" #filterInput placeholder="Filter" style="width: 200px" />
+  
+        </div>
+        <ngx-datatable class="bootstrap bgmatch" style="width: 100%" [rows]="applicantsData" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10">
+          <!-- <ngx-datatable-column name="S.No." [flexGrow]="1" [resizeable]="false" >
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+                {{ rowIndex + 1 }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column> -->
+          <ngx-datatable-column name="Applicant Id" [flexGrow]="1.5" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link" style="color: black; width: 447px; padding-left: 0">
+                 {{ row?.applicant_id }}
+               
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <hr />
+          
+          <ngx-datatable-column name="From Location" [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                <span> {{ row?.from_location | titlecase }}</span>
+                <!-- <span style="padding-left: 5px">
+                  {{ row?.applicant_lastname | titlecase }}</span> -->
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="To Location" [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                {{ row?.to_location }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="From Date" [flexGrow]="1.5" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                {{ row?.start_date_journey }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="To Date" [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection">
+                {{ row?.end_date_journey_expected }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Loan Return Date" [flexGrow]="2" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                {{ row?.return_date_amount_expected }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Account No." [flexGrow]="1.5" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                {{ row?.account_no }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="IFSC Code" [flexGrow]="1.5" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="nav-link tableAtag disableTextSelection" >
+                {{ row?.ifsc_code}}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  
+      </div>

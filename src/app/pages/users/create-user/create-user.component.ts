@@ -73,6 +73,16 @@ export class CreateUserComponent {
   
   createUser() {
     if (this.loginForm.valid) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, save it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
     const addUserJSON: AddUserModel = {
       user_id:'',
       company_code:this.apiService.encryptionAES(this.loginForm.value.company),
@@ -95,24 +105,16 @@ export class CreateUserComponent {
           if(response.status == true){
             this.loginForm.reset();
           }
-          Swal.fire({
-            position: 'center',
-            icon: response.status ? 'success' : 'error',
-            title: response.message
-          }).then((response) => {
-            if (response.isConfirmed) {
-              if (response) {
-                this.router.navigate(['/pages/user']);
-              }
-            }
-          });
+         
         },
         error: (err) => {
           console.log(err);
         },
         complete: () => {},
       });
-      
+      Swal.fire('Saved', 'Your detail has been saved.', 'success');
+    }
+  });
   }
     console.log(this.loginForm);
   }

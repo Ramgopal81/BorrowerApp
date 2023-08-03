@@ -60,28 +60,12 @@
         Enter a valid mobile no.
       </div>
     </div>
-    <div class="pt-2 pb-1">
-      <div style="padding-left: 15px; padding-right: 15px">
-        <input
-          type="password"
-          formControlName="pin"
-          placeholder="M-Pin"
-          class="form-control"
-          onKeyPress="if(this.value.length==4) return false;"
-        />
-      </div>
-      <div
-        *ngIf="formSubmitted && loginForm.get('pin')?.hasError('required')"
-        style="color: red; padding-left: 15px"
-      >
-        Enter pin
-      </div>
-    </div>
+   
     <div class="pt-2 pb-1">
         <div style="padding-left: 15px; padding-right: 15px">
           <label for="inputState1" class="form-label"> Company </label>
             <select id="inputState1 " class="form-control" formControlName="company" name="company">
-              <option selected *ngFor="let item of company" value="{{item.company_code}}">{{item.companyName}}</option>
+              <option selected *ngFor="let item of company" value="{{item.company_code}}">{{item.company_name}}</option>
             </select>
         </div>
     </div>

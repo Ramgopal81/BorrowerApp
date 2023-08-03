@@ -1,7 +1,7 @@
 <div class="centerNumberDiv">
     <form [formGroup]="loginForm" >
         <div class="d-flex justify-content-center pb-1 pt-4">
-          <h3 style="color: black;">Journey Detail</h3>
+          <h3 style="color: black;">Advance Travel Approval Request</h3>
         </div>
         <div class="pt-2 pb-1">
             <div style="padding-left: 15px; padding-right: 15px">
@@ -24,7 +24,9 @@
               placeholder="Applicant Id"
               class="form-control"
               maxlength="30"
+              [(ngModel)]="applicantId" 
             />
+              <button style="border-radius: 5px;background-color: rgb(12, 91, 137);color: aliceblue;" (click)="openVerticallyCentered(mymodal1)">Click me</button>
           </div>
         </div>
         
@@ -192,4 +194,81 @@
           </button>
         </div>
       </form>
+      <ng-template #mymodal1 let-modal1>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            Select Applicant
+          </h4>
+        </div>
+        <div class="modal-body" style="height: 500px">
+          
+            <!-- <table>
+              <thead style=" background-color: hsl(215, 83%, 28%);color: aliceblue;border: 2px solid black;">
+                <tr>
+                  <th scope="col">Applicant ID</th>
+                  <th scope="col">Applicant name</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of applicantsData">
+                  <td>{{ item.applicant_id }}</td>
+                  <td>{{ item.applicant_firstname}}</td>
+                </tr>
+              </tbody>
+            </table> -->
+            <div class="container-fluid">
+              
+              <div  style="padding-left: 4%; padding-right: 4%; padding-top: 2%">
+                <div class="card p-3 customCard">
+                  <!-- <div class="d-flex justify-content-end pt-1 pb-2">
+                    <input type="text" class="form-control" #filterInput placeholder="Filter" style="width: 200px" />
+            
+                  </div> -->
+                  <ngx-datatable class="bootstrap bgmatch" style="width: 100%" [rows]="applicantsData" [columnMode]="'flex'"
+                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="6">
+
+                    <ngx-datatable-column name="Select" [flexGrow]="1" [resizeable]="false">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a class="nav-link" style="color: black; width: 447px; padding-left: 0" >
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="{{row?.applicant_id}}" [(ngModel)]="userId">
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Applicant Id" [flexGrow]="1.5" [resizeable]="false">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a class="nav-link" style="color: black; width: 447px; padding-left: 0" >
+                           {{ row?.applicant_id }}
+                         
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <hr />
+                    
+                    <ngx-datatable-column name="Name" [flexGrow]="2" [resizeable]="false">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a class="nav-link tableAtag disableTextSelection" >
+                          <span> {{ row?.applicant_firstname | titlecase }}</span>
+                          <span style="padding-left: 5px">
+                            {{ row?.applicant_lastname | titlecase }}</span>
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                   
+                  </ngx-datatable>
+                </div>
+              </div>
+            
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" ngbAutofocus class="btn btn-primary" (click)="modal1.close(getId())">
+            Submit
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="modal1.dismiss(cancel())">
+            Cancel
+          </button>
+        </div>
+      </ng-template>
 </div>

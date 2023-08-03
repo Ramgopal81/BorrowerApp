@@ -222,6 +222,13 @@ export class ApiService {
     });
   }
 
-
+  postAdvanceDetails(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/borrower/getAlladvanceTrigger`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
 
 }
