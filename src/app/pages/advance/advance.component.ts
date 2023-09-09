@@ -70,7 +70,7 @@ export class AdvanceComponent {
     if (this.loginForm.valid || (parseInt(this.amount) - parseInt(this.loginForm.value.advanceAmount)> 0)) {
       Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        text: "You want to save this detail!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -127,8 +127,18 @@ export class AdvanceComponent {
             .pipe()
             .subscribe({
               next: (response) => {
-                if (this.apiService.decryptionAES(response.status) == 'True') {
-                  this.loginForm.reset();
+                if (this.apiService.decryptionAES(response.status) == 'false') {
+                  Swal.fire(
+                    'unsaved',
+                    this.apiService.decryptionAES(response.message),
+                    'error'
+                  );
+                } else {
+                  Swal.fire(
+                    'Saved',
+                    this.apiService.decryptionAES(response.message),
+                    'success'
+                  );
                 }
               },
               error: (err) => {
@@ -136,7 +146,7 @@ export class AdvanceComponent {
               },
               complete: () => {},
             });
-          Swal.fire('Saved', 'Your detail has been saved.', 'success');
+         
         }
       });
     }else{

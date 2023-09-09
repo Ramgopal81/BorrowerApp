@@ -165,12 +165,12 @@ export class AdvanceDetailComponent implements OnInit {
   saveAdvanceDetail() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "You want to approve this loan!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, save it!',
+      confirmButtonText: 'Yes, approve it!',
     }).then((result) => {
       if (result.isConfirmed) {
         const addAdvanceJSON: AdvanceSaveModel = {
@@ -212,12 +212,12 @@ export class AdvanceDetailComponent implements OnInit {
   reject() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "You want to reject this loan!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, save it!',
+      confirmButtonText: 'Yes, reject it!',
     }).then((result) => {
       if (result.isConfirmed) {
         const addAdvanceJSON: AdvanceSaveModel = {
