@@ -16,6 +16,8 @@ import { ModifycompanyComponent } from "./modifycompany/modifycompany.component"
 import { AdvanceComponent } from "./advance/advance.component";
 import { OptionComponent } from "./option/option.component";
 import { TriggerdetailComponent } from "./triggerdetail/triggerdetail.component";
+import { UpdateComponent } from "./update/update.component";
+import { AdvanceDetailComponent } from "./advance-detail/advance-detail.component";
 
 
 export const PAGES_ROUTE: Route[] = [
@@ -88,6 +90,14 @@ export const PAGES_ROUTE: Route[] = [
         {
           "path":"triggerDetail",
           component:TriggerdetailComponent
+        },
+        {
+          "path":"update",
+          component:UpdateComponent
+        },
+        {
+          "path":"advanceDetail",
+          component:AdvanceDetailComponent
         },
 
     ],

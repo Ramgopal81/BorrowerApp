@@ -3,6 +3,7 @@
     class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
     style="align-items: center"
   ></div>
+ 
   <div
     class="container-fluid"
     style="border: 15px solid rgb(223, 220, 220); padding-top: 0px"
@@ -18,7 +19,9 @@
       >
         <div class="block">
           <label> <b>First Name</b></label>
+          
           {{ borrowerDetail.applicant_firstname }}
+          
         </div>
         <div class="block">
           <label> <strong>Last Name</strong></label>
@@ -75,6 +78,11 @@
         <div class="block">
           <label> <strong>Aadhar no.</strong></label>
           {{ borrowerDetail.aadhar_no }}
+        </div>
+        
+        <div class="block">
+          <label> <strong>Pridicted Score</strong></label>
+          {{ borrowerDetail.predicted_score }}
         </div>
         <div class="block">
           <label> <strong>Applicant Signature</strong></label>
@@ -159,6 +167,10 @@
               {{ borrowerDetail.house_renovation_expenses }}
             </div>
             <div class="block">
+              <label> <strong>Estimated Income</strong></label>
+              {{ borrowerDetail.estimated_income }}
+            </div>
+            <div class="block">
               <label> <strong>Applicant Photo</strong></label>
               <img
                 [src]="applicantPhoto"
@@ -177,9 +189,16 @@
               />
             </div>
           <!-- </div>
+            raise travel advance request
+            travel advance request list
         </div> -->
       </div>
     </div>
+    <div class="block">
+      <label> <strong>Add Comment</strong></label>
+      <textarea maxlength="500" style="width: 500px;"> </textarea>
+    </div>
+   
     <div
       class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
       style="align-items: center"
@@ -192,6 +211,7 @@
       >
         Back
       </button>
+     
       <div *ngIf="validateButton == true">
         <button
         style="background-color: rgb(12, 91, 137)"
@@ -211,5 +231,19 @@
         </button>
       </div>
     </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+    <!-- <button
+      type="button"
+      class="btn btn-success"
+      (click)="update()"
+      style="margin: 15px;margin-top: 5px; background-color: rgb(12, 91, 137)"
+    >
+      Update
+    </button> -->
+   
+  </div>
   </div>
 </div>

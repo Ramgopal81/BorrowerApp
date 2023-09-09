@@ -38,13 +38,13 @@
             </a>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [flexGrow]="3" [resizeable]="false">
+        <!-- <ngx-datatable-column name="Email" [flexGrow]="3" [resizeable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
               {{ row?.applicant_email_id }}
             </a>
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="Mobile No." [flexGrow]="1.5" [resizeable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
@@ -80,8 +80,64 @@
             </a>
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column name="Verified By" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+             
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Verified When" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+             
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column name="Authorised by" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.sh_approval}}
+            </a>
+          </ng-template>
+        </ngx-datatable-column> -->
+        <!-- <ngx-datatable-column name="Authorised when" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.sh_approval}}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Approved By" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.sh_approval}}
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Approved wheen" [flexGrow]="1.5" [resizeable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
+              {{ row?.sh_approval}}
+            </a>
+          </ng-template>
+        </ngx-datatable-column> -->
       </ngx-datatable>
     </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="downloadCSV()"
+      style="margin: 15px;margin-top: 5px; background-color: rgb(12, 91, 137)"
+    >
+      Download
+    </button>
+   
   </div>
-
+  </div>
+ 
     </div>

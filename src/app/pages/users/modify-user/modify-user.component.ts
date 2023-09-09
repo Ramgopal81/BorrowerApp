@@ -76,7 +76,7 @@ export class ModifyUserComponent {
       email_id:this.apiService.encryptionAES(this.loginForm.value.email),
       password:this.apiService.encryptionAES(''),
       mobile_no:this.apiService.encryptionAES(this.loginForm.value.mobile),
-      company_code:this.apiService.encryptionAES(this.loginForm.value.company),
+      company_code:this.loginForm.value.company,
       admin:false,
       bc_agent:false,
       otp:''

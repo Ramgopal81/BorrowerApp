@@ -69,6 +69,27 @@ export class DeleteUserComponent {
         next: (response) => {
           if (response) {
             this.rows = response.dashboard_details;
+            if (response.dashboard_details) {
+              response.dashboard_details.forEach((element: any) => {
+                if (element.total_applicants) {
+                  element.total_applicants = this.apiService.decryptionAES(element.total_applicants);
+                }
+                if (element.pending_for_verification) {
+                  element.pending_for_verification = this.apiService.decryptionAES(element.pending_for_verification);
+                }
+                if (element.verified_today) {
+                  element.verified_today = this.apiService.decryptionAES(element.verified_today);
+                }
+                if (element.total_verified) {
+                  element.total_verified = this.apiService.decryptionAES(element.total_verified);
+                }
+                if (element.total_rejected) {
+                  element.total_rejected = this.apiService.decryptionAES(element.total_rejected);
+                }
+              });
+            
+              
+            }
           }
         },
         error: (err) => {

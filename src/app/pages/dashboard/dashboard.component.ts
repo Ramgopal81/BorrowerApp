@@ -39,11 +39,11 @@ export class DashboardComponent {
           if (response) {
             this.rows = response.dashboard_details;
             console.log(this.rows[0].total_applicants);
-            this.totalApplicant = this.rows[0].total_applicants;
-            this.pendingApp = this.rows[0].pending_for_verification;
-            this.todayVerify = this.rows[0].verified_today;
-            this.totalVerify = this.rows[0].total_verified;
-            this.totalReject = this.rows[0].total_rejected;
+            this.totalApplicant = this.apiService.decryptionAES(this.rows[0].total_applicants);
+            this.pendingApp = this.apiService.decryptionAES(this.rows[0].pending_for_verification);
+            this.todayVerify = this.apiService.decryptionAES(this.rows[0].verified_today);
+            this.totalVerify = this.apiService.decryptionAES(this.rows[0].total_verified);
+            this.totalReject = this.apiService.decryptionAES(this.rows[0].total_rejected);
             sessionStorage.setItem('totalApplicant', this.totalApplicant);
             sessionStorage.setItem('pendingApp', this.pendingApp);
             sessionStorage.setItem('todayVerify', this.todayVerify);

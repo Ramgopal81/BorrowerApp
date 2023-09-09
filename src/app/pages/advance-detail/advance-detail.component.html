@@ -1,0 +1,153 @@
+<div style="padding-left: 25px;">
+    <div
+      class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+      style="align-items: center"
+    ></div>
+   
+    <div
+      class="container-fluid"
+      style="border: 15px solid rgb(223, 220, 220); padding-top: 0px"
+    >
+      <div class="d-flex justify-content-center pt-2 pb-3">
+        <h3>Applicant's Info</h3>
+      </div>
+  
+      <div class="row pt-3 pb-3">
+        <div
+          class="col-lg-6 col-md-6 col-sm-6 col-6"
+          style="border-right: 2px solid rgb(203, 200, 200)"
+        >
+          <div class="block">
+            <label> <b>Applicant Id</b></label>
+            
+            {{ borrowerDetail.applicant_id }}
+            
+          </div>
+          <div class="block">
+            <label> <strong>From Location</strong></label>
+            {{ borrowerDetail.from_location }}
+          </div>
+          <div class="block">
+            <label> <strong>To Location</strong></label>
+            {{ borrowerDetail.to_location }}
+          </div>
+          <div class="block">
+            <label> <strong>Start Journey Date</strong></label>
+            {{ borrowerDetail.start_date_journey }}
+          </div>
+          <div class="block">
+            <label> <strong>End Journey Date</strong></label>
+            {{ borrowerDetail.end_date_journey_expected }}
+          </div>
+          <div class="block">
+            <label> <strong>Advance Amount</strong></label>
+            {{ borrowerDetail.advance_amount }}
+          </div>
+          <div class="block">
+            <label> <strong>Return Date Expected</strong></label>
+            {{ borrowerDetail.return_date_amount_expected }}
+          </div>
+          <div class="block">
+            <label> <strong>Truck No.</strong></label>
+            {{ borrowerDetail.truck_number }}
+          </div>
+         
+         
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+          <!-- <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-6"> -->
+              <div class="block">
+                <label> <strong>Raised User Id</strong></label>
+                {{ borrowerDetail.raised_user_id }}
+              </div>
+              <div class="block">
+                <label> <strong>Approved User Id</strong></label>
+                <!-- <input type="text" [(ngModel)]="approvedUserId"> -->
+                {{ this.user }}
+              </div>
+              <div class="block">
+                <label> <strong>Account No.</strong></label>
+                {{ borrowerDetail.account_no }}
+              </div>
+              <div class="block">
+                <label> <strong>IFSC Code</strong></label>
+                {{ borrowerDetail.ifsc_code }}
+              </div>
+              <div class="block">
+                <label> <strong>Approved amount</strong></label>
+                <!-- {{ borrowerDetail.approved_amount }} -->
+                <input type="text" [(ngModel)]="approvedAmount">
+              </div>
+              <div class="block">
+                <label> <strong>Comment by MK</strong></label>
+                {{ borrowerDetail.comment_by_mk }}
+              </div>
+              <div class="block">
+                <label> <strong>Comment by SH</strong></label>
+                {{ borrowerDetail.commenyt_by_sh }}
+              </div>
+              <div class="block">
+                <label> <strong>Approved Status</strong></label>
+                <!-- {{ borrowerDetail.approval_status }} -->
+                <span *ngIf="this.status =='Y'"> Approved</span>
+                <span *ngIf="this.status =='N'"> Rejected</span>
+                <span *ngIf="this.status =='S'"> Initiated</span>
+              </div>
+            
+            <!-- </div>
+              raise travel advance request
+              travel advance request list
+          </div> -->
+        </div>
+      </div>
+    
+     
+      <div
+        class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+        style="align-items: center"
+      >
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="back()"
+          style="margin: 15px;background-color: rgb(12, 91, 137)"
+        >
+          Back
+        </button>
+        <div *ngIf="msg == true">
+        <button
+        type="button"
+        class="btn btn-success"
+        (click)="saveAdvanceDetail()"
+        style="margin: 15px;background-color: rgb(12, 91, 137)"
+      >
+        Save
+      </button>
+      <button
+      type="button"
+      class="btn btn-success"
+      (click)="reject()"
+      style="margin: 15px;background-color: rgb(12, 91, 137)"
+    >
+      Reject
+    </button>
+    </div>
+      </div>
+      <div
+      class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+      style="align-items: center"
+    >
+      <!-- <button
+        type="button"
+        class="btn btn-success"
+        (click)="update()"
+        style="margin: 15px;margin-top: 5px; background-color: rgb(12, 91, 137)"
+      >
+        Update
+      </button> -->
+     
+    </div>
+    </div>
+  </div>
+  

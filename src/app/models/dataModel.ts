@@ -100,3 +100,50 @@ export interface AdvanceTrigger{
   commenyt_by_sh: string,
   approval_status: string
 }
+
+export interface Update{
+  vehicle_no: string,
+  company_name: string,
+  applicant_firstname: string,
+  applicant_Date_of_birth: string,
+  age: string,
+  maritalstatus: string,
+  nominee_name: string,
+  nominee_dob: string,
+  nominee_age: string,
+  nominee_relation: string,
+  spouse_name: string,
+  applicant_father_firstname: string,
+  religion: string,
+  applicant_qualification: string,
+  applicant_employment_type: string,
+  applicant_address_line_1: string,
+  applicant_city_name: string,
+  applicant_pin: string,
+  applicant_mobile_no: string,
+  no_of_family_member: string,
+  no_of_earning_member: string,
+  house_type: string,
+  medical_insurance: string,
+  current_loan_outstanding_principal: string,
+  applicant_income: string,
+  income_from_other_sources: string,
+  food_expenses: string,
+  houserent: string,
+  house_renovation_expenses: string,
+  updated_by: string,
+  total_monthly_bill_payment: string,
+  applicant_expense_monthly: string,
+  applicant_id: string
+  current_loan_outstanding_interest: string,
+  ration_Card: string
+}
+
+export interface AdvanceSaveModel{
+  applicant_id: string,
+  company_code: string,
+  approval_status: string,
+  approved_amount: string,
+  approved_username: string,
+  comment_by_sh: string
+}

@@ -31,7 +31,7 @@
           
           <ngx-datatable-column name="From Location" [flexGrow]="2" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 <span> {{ row?.from_location | titlecase }}</span>
                 <!-- <span style="padding-left: 5px">
                   {{ row?.applicant_lastname | titlecase }}</span> -->
@@ -40,42 +40,42 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="To Location" [flexGrow]="2" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.to_location }}
               </a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="From Date" [flexGrow]="1.5" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.start_date_journey }}
               </a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="To Date" [flexGrow]="2" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection">
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.end_date_journey_expected }}
               </a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Loan Return Date" [flexGrow]="2" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.return_date_amount_expected }}
               </a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Account No." [flexGrow]="1.5" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.account_no }}
               </a>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="IFSC Code" [flexGrow]="1.5" [resizeable]="false">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="nav-link tableAtag disableTextSelection" >
+              <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
                 {{ row?.ifsc_code}}
               </a>
             </ng-template>

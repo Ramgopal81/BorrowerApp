@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import * as saveAs from 'file-saver';
 import {
   AuthorisationFormModel,
   Authorize,
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
   detail: Detail = new Detail();
   authorize: Authorize = new Authorize();
   currRadioCheckedId: any;
+  viewUrl:string='https://www.africau.edu/images/default/sample.pdf'
   applicantsData!: ApplicantsResponseModel[];
   tempArray!:ApplicantsResponseModel[];
   applicantType:any =  sessionStorage.getItem('companyCode')
@@ -188,4 +190,12 @@ console.log(this.applicantType);
   //     });
   //   });
   // }
+  downloadCSV(): void {
+   
+    this.viewUrl='http://20.83.180.143:9080/applicant/downloadTruckerscsv'
+    console.log(this.viewUrl);
+    window.open(
+      this.viewUrl,'_blank'
+     );
+  }
 }

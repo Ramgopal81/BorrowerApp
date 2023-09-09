@@ -38,7 +38,7 @@ constructor(private fb: FormBuilder, private router: Router,private apiService:A
 
 
 onLogin() {
-  console.log(this.apiService.encryptionAES('Ram'))
+  
   this.formSubmitted = true;
   if (this.loginForm.valid) {
     const mobile = this.apiService.encryptionAES(this.loginForm.value.mobile);
@@ -51,11 +51,11 @@ onLogin() {
         next: (response) => {
           if (response) {
          console.log(response);
-this.applicantType = response.user.company_code
+this.applicantType = this.apiService.decryptionAES(response.user.company_code)
 this.userId = response.user.user_id
 this.mobile = response.user.mobile_no
-this.allowedAmount = response.company.allowed_amount
-this.currAmount = parseInt(response.company.current_amount)
+this.allowedAmount = this.apiService.decryptionAES(response.company.allowed_amount)
+this.currAmount = parseInt(this.apiService.decryptionAES(response.company.current_amount))
 sessionStorage.setItem('companyCode',this.applicantType)
 sessionStorage.setItem('userId',this.userId)
 sessionStorage.setItem('mobile',this.mobile)
@@ -63,9 +63,9 @@ sessionStorage.setItem('allowed',this.allowedAmount)
 sessionStorage.setItem('current',this.currAmount)
 
 console.log(this.applicantType);
-const token = 'ram578hshjsaghhdcd'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDU2Nzg5LCJuYW1lIjoiSm9zZXBoIn0.OpOSSw7e485LOP5PrzScxHb7SR6sAOMRckfFwi4rp7o'
       this._authService.processingData(token);
-      if(response.user.is_first_login == 'N'){
+      if(response.user.is_first_login == null){
         this.router.navigate(["dashboard"]);
       }else if(response.user.is_first_login == 'Y'){
         this.router.navigate(["reset"]);

@@ -15,7 +15,7 @@ export const APP_ROUTE: Route[] = [
     },
     {
       path: '',
-      // canActivate:[AuthGuard],
+      canActivate:[AuthGuard],
       loadChildren: () => import('./pages/pages.route').then( m => m.PAGES_ROUTE)
 
 

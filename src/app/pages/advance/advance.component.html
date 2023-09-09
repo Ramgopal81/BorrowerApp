@@ -1,9 +1,9 @@
 <div class="centerNumberDiv">
-    <form [formGroup]="loginForm" >
+    <form [formGroup]="loginForm" class="row g-3">
         <div class="d-flex justify-content-center pb-1 pt-4">
-          <h3 style="color: black;">Advance Travel Approval Request</h3>
+          <h3 style="color: black;">Raise travel advance request</h3>
         </div>
-        <div class="pt-2 pb-1">
+        <div class="col-md-6">
             <div style="padding-left: 15px; padding-right: 15px">
               <label for="inputState2" class="form-label"> Authoriser Id  </label> <span style="color: red;"> *</span>
               <input
@@ -15,7 +15,7 @@
               />
             </div>
         </div>
-        <div class="pt-3 pb-3">
+        <div class="col-md-6">
           <div style="padding-left: 15px; padding-right: 15px">
             <label for="inputState2" class="form-label"> Applicant Id </label> <span style="color: red;"> *</span>
             <input
@@ -30,7 +30,7 @@
           </div>
         </div>
         
-        <div class="pt-2 pb-1">
+        <div class="col-md-6">
             <div style="padding-left: 15px; padding-right: 15px">
               <label for="inputState2" class="form-label"> From Date  </label> <span style="color: red;"> *</span>
               <input
@@ -44,7 +44,7 @@
             
             </div>
         </div>
-        <div class="pt-2 pb-1">
+        <div class="col-md-6">
           <div style="padding-left: 15px; padding-right: 15px">
             <label for="inputState2" class="form-label"> To Date </label> <span style="color: red;"> *</span>
             <input
@@ -56,7 +56,7 @@
             />
           </div>
       </div>
-      <div class="pt-2 pb-1">
+      <div class="col-md-6">
         <div style="padding-left: 15px; padding-right: 15px">
           <label for="inputState2" class="form-label"> Truck Number </label> <span style="color: red;"> *</span>
           <input
@@ -69,7 +69,7 @@
         </div>
     </div>
     
-    <div class="pt-2 pb-1">
+    <div class="col-md-6">
       <div style="padding-left: 15px; padding-right: 15px">
         <label for="inputState2" class="form-label"> From Location </label> <span style="color: red;"> *</span>
         <input
@@ -82,7 +82,7 @@
       </div>
   </div>
 
-  <div class="pt-2 pb-1">
+  <div class="col-md-6">
     <div style="padding-left: 15px; padding-right: 15px">
       <label for="inputState2" class="form-label"> To Location </label> <span style="color: red;"> *</span>
       <input
@@ -95,7 +95,7 @@
     </div>
 </div>
 
-<div class="pt-2 pb-1">
+<div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Advance Amount </label> <span style="color: red;"> *</span>
     <input
@@ -107,7 +107,7 @@
     />
   </div>
 </div>
-<div class="pt-2 pb-1">
+<div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Return Date of Loan </label> <span style="color: red;"> *</span>
     <input
@@ -119,7 +119,7 @@
     />
   </div>
 </div>
-<div class="pt-2 pb-1">
+<div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Account No. </label> <span style="color: red;"> *</span>
     <input
@@ -131,7 +131,7 @@
     />
   </div>
 </div>
-<div class="pt-2 pb-1">
+<div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Ifsc Code </label> <span style="color: red;"> *</span>
     <input
@@ -143,7 +143,7 @@
     />
   </div>
 </div>
-<div class="pt-2 pb-1">
+<!-- <div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Approved Amount </label> <span style="color: red;"> *</span>
     <input
@@ -154,8 +154,8 @@
       [maxlength]="10"
     />
   </div>
-</div>
-<div class="pt-2 pb-1">
+</div> -->
+<div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
     <label for="inputState2" class="form-label"> Comment By Mk</label> <span style="color: red;"> *</span>
     <input
@@ -186,9 +186,9 @@
           class="d-flex justify-content-center pt-3"
           style="align-items: center"
         >
-        <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="show()">
+        <!-- <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="show()">
           Show detail
-        </button>
+        </button> -->
           <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="submit()">
             Submit
           </button>
@@ -249,7 +249,7 @@
                     <ngx-datatable-column name="Name" [flexGrow]="2" [resizeable]="false">
                       <ng-template let-row="row" ngx-datatable-cell-template>
                         <a class="nav-link tableAtag disableTextSelection" >
-                          <span> {{ row?.applicant_firstname | titlecase }}</span>
+                          <span> {{ row?.applicant_name | titlecase }}</span>
                           <span style="padding-left: 5px">
                             {{ row?.applicant_lastname | titlecase }}</span>
                         </a>

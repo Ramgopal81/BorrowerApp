@@ -32,7 +32,7 @@
     <div class="pt-3 pb-3">
       <div style="padding-left: 15px; padding-right: 15px">
         <input
-          type="number"
+          type="string"
           formControlName="mobile"
           placeholder="Mobile"
           class="form-control"
@@ -51,7 +51,7 @@
           <label for="inputState1" class="form-label"> Company </label>
             <select id="inputState1 " class="form-control" formControlName="company" name="company">
             <option selected>Choose company</option>
-              <option *ngFor="let item of company" value="{{item.company_code}}">{{item.companyName}}</option>
+              <option *ngFor="let item of company" value="{{item.company_code}}">{{item.company_name}}</option>
             </select>
         </div>
     </div>

@@ -38,6 +38,7 @@ export class AdvanceComponent {
   userId: any;
   applicantsData: any;
   applicantId: any;
+  amount: any = sessionStorage.getItem('current');
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -62,9 +63,11 @@ export class AdvanceComponent {
   }
   ngOnInit() {
     this.getApplicationData();
+    console.log(typeof this.amount);
+    
   }
   submit() {
-    if (this.loginForm.valid) {
+    if (this.loginForm.valid || (parseInt(this.amount) - parseInt(this.loginForm.value.advanceAmount)> 0)) {
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -111,7 +114,7 @@ export class AdvanceComponent {
               this.loginForm.value.ifscCode
             ),
             approved_amount: this.apiService.encryptionAES(
-              this.loginForm.value.approvedAmount
+              '0'
             ),
             comment_by_mk: this.apiService.encryptionAES(
               this.loginForm.value.mkComment
@@ -136,6 +139,8 @@ export class AdvanceComponent {
           Swal.fire('Saved', 'Your detail has been saved.', 'success');
         }
       });
+    }else{
+      Swal.fire('Unsaved', 'You exceeded your limit', 'error');
     }
   }
 
@@ -171,7 +176,7 @@ export class AdvanceComponent {
 
   getApplicationData() {
     this.apiService
-      .postDetails('AV')
+      .postusersDetails()
       .pipe()
       .subscribe({
         next: (response) => {
@@ -184,46 +189,46 @@ export class AdvanceComponent {
                     element.applicant_id
                   );
                 }
-                if (element.applicant_firstname) {
-                  element.applicant_firstname = this.apiService.decryptionAES(
-                    element.applicant_firstname
+                if (element.applicant_name) {
+                  element.applicant_name = this.apiService.decryptionAES(
+                    element.applicant_name
                   );
                 }
-                if (element.applicant_lastname) {
-                  element.applicant_lastname = this.apiService.decryptionAES(
-                    element.applicant_lastname
-                  );
-                }
-                if (element.applicant_email_id) {
-                  element.applicant_email_id = this.apiService.decryptionAES(
-                    element.applicant_email_id
-                  );
-                }
-                if (element.company_name) {
-                  element.company_name = this.apiService.decryptionAES(
-                    element.company_name
-                  );
-                }
-                if (element.applicant_mobile_no) {
-                  element.applicant_mobile_no = this.apiService.decryptionAES(
-                    element.applicant_mobile_no
-                  );
-                }
-                if (element.av_approval) {
-                  element.av_approval = this.apiService.decryptionAES(
-                    element.av_approval
-                  );
-                }
-                if (element.mk_approval) {
-                  element.mk_approval = this.apiService.decryptionAES(
-                    element.mk_approval
-                  );
-                }
-                if (element.sh_approval) {
-                  element.sh_approval = this.apiService.decryptionAES(
-                    element.sh_approval
-                  );
-                }
+                // if (element.applicant_lastname) {
+                //   element.applicant_lastname = this.apiService.decryptionAES(
+                //     element.applicant_lastname
+                //   );
+                // }
+                // if (element.applicant_email_id) {
+                //   element.applicant_email_id = this.apiService.decryptionAES(
+                //     element.applicant_email_id
+                //   );
+                // }
+                // if (element.company_name) {
+                //   element.company_name = this.apiService.decryptionAES(
+                //     element.company_name
+                //   );
+                // }
+                // if (element.applicant_mobile_no) {
+                //   element.applicant_mobile_no = this.apiService.decryptionAES(
+                //     element.applicant_mobile_no
+                //   );
+                // }
+                // if (element.av_approval) {
+                //   element.av_approval = this.apiService.decryptionAES(
+                //     element.av_approval
+                //   );
+                // }
+                // if (element.mk_approval) {
+                //   element.mk_approval = this.apiService.decryptionAES(
+                //     element.mk_approval
+                //   );
+                // }
+                // if (element.sh_approval) {
+                //   element.sh_approval = this.apiService.decryptionAES(
+                //     element.sh_approval
+                //   );
+                // }
               });
             }
           }

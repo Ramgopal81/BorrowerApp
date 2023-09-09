@@ -1,14 +1,33 @@
+// .centerNumberDiv{
+//     position: absolute;top: 55%;left: 50%; width: 30em;
+//   // height: 30em;
+//   transform: translate(-50%, -50%);
+//   //  background-color:#8ad1fe;
+//   position: flex;
+//   margin-top: 300px;
+//   }
+//   .cls{
+//     justify-content: center;
+//     align-items: center;
+//     display: flex;
+//     // background-color: black;
+// }
 .centerNumberDiv{
-    position: absolute;top: 55%;left: 50%; width: 30em;
-  // height: 30em;
-  transform: translate(-50%, -50%);
-  //  background-color:#8ad1fe;
-  position: flex;
-  margin-top: 300px;
-  }
-  .cls{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    // background-color: black;
+  position: absolute;top: 55%;left: 50%; width: 50em;
+height: 30em;
+transform: translate(-50%, -50%);
+//  background-color:#8ad1fe;
+// position: fixed;
+}
+.cls{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  // background-color: black;
+}
+h3{
+  color: white;
+
+  margin-left: 20px;
+  
 }

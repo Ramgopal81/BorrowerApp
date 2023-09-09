@@ -54,22 +54,32 @@ export class CreateUserComponent {
     this.getcompanyData()
   }
   getcompanyData(){
-      this.apiService
-      .postcompanyDetails()
-      .pipe()
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.company= response.company;
-            console.log(this.company);
+    this.apiService
+    .postcompanyDetails()
+    .pipe()
+    .subscribe({
+      next: (response) => {
+        if (response) {
+          this.company= response.company;
+          if (response.company) {
+            response.company.forEach((element: any) => {
+              if (element.company_name) {
+                element.company_name = this.apiService.decryptionAES(
+                  element.company_name
+                );
+              }
+              
+            });
           }
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {},
-      });
-    }
+          console.log(this.company);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
+  }
   
   createUser() {
     if (this.loginForm.valid) {
@@ -85,7 +95,7 @@ export class CreateUserComponent {
         if (result.isConfirmed) {
     const addUserJSON: AddUserModel = {
       user_id:'',
-      company_code:this.apiService.encryptionAES(this.loginForm.value.company),
+      company_code:(this.loginForm.value.company),
       firstname: this.apiService.encryptionAES(this.loginForm.value.firstName),
       lastname:this.apiService.encryptionAES(this.loginForm.value.lastName),
       role:this.apiService.encryptionAES(this.loginForm.value.role),
@@ -102,6 +112,12 @@ export class CreateUserComponent {
       .pipe()
       .subscribe({
         next: (response) => {
+          if(this.apiService.decryptionAES(response.status) == 'false'){
+            Swal.fire('unsaved', 'Your detail has not been saved.', 'error');
+          }else{
+            Swal.fire('Saved', 'Your detail has been saved.', 'success');
+            this.loginForm.reset();
+          }
           if(response.status == true){
             this.loginForm.reset();
           }
@@ -112,7 +128,7 @@ export class CreateUserComponent {
         },
         complete: () => {},
       });
-      Swal.fire('Saved', 'Your detail has been saved.', 'success');
+    
     }
   });
   }

@@ -35,7 +35,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AddCompanyModel, AddUserModel, AdvanceTrigger, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, UserDetail } from '../models/dataModel';
+import { AddCompanyModel, AddUserModel, AdvanceSaveModel, AdvanceTrigger, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, Update, UserDetail } from '../models/dataModel';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
@@ -104,6 +104,14 @@ export class ApiService {
             
             });
   }
+  postusersDetails(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/borrower/GetMkverifiedApplicant`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
   postcompanyDetails(): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/user/GetAllCompany_name`, {
               headers: new HttpHeaders({
@@ -129,8 +137,16 @@ export class ApiService {
             });
   }
 
-  getapplicantById(applicantId:string){
+  getapplicantById(applicantId:string|null){
     return this.http.get<any>(`${this.API_URL}/applicant/getapplicantList/v1?applicant_id=${applicantId}`, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      
+      })
+  }
+  getadvanceById(applicant_id:string|null){
+    return this.http.post<any>(`${this.API_URL}/borrower/getadvanceTriggerByApplicant_id`,{applicant_id:applicant_id}, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
@@ -148,7 +164,7 @@ export class ApiService {
   }
 
     postauthorize(authorize: AuthorisationFormModel): Observable<any> {
-    return this.http.post('http://20.83.180.143:8080/applicant/borrower/authorizeApplicant/v1', authorize, {
+    return this.http.post('http://20.83.180.143:9080/applicant/borrower/authorizeApplicant/v1', authorize, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -165,8 +181,26 @@ export class ApiService {
     });
   }
 
+  postUpdateApplicant(update: Update): Observable<any> {
+    return this.http.post(`${this.API_URL}/applicant/modifyTruckersDetails/v1`, update, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  }
+
   postAddUser(addUser: AddUserModel): Observable<any> {
     return this.http.post(`${this.API_URL}/user/add_modify_user`, addUser, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  
+  }
+  postSaveAdvance(saveAdvance: AdvanceSaveModel): Observable<any> {
+    return this.http.post(`${this.API_URL}/borrower/ApproveAdvanceLoan`, saveAdvance, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -231,4 +265,12 @@ export class ApiService {
             });
   }
 
+  downloadCSV(): Observable<any> {
+    return this.http.get(
+      'http://20.83.180.143:9080/applicant/downloadTruckerscsv',
+      {
+        responseType: 'text',
+      }
+    );
+  }
 }

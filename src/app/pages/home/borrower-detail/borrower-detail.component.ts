@@ -26,6 +26,7 @@ export class BorrowerDetailComponent implements OnInit {
   approvedAmountCheck: any;
   companyName: any;
   buttonName1:any
+  applicantId:any
   applicantType: any = sessionStorage.getItem('companyCode');
   allowedAmount: any = sessionStorage.getItem('allowed');
   currentAmount: any = sessionStorage.getItem('current');
@@ -37,6 +38,8 @@ export class BorrowerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBorrowerDetail();
+    console.log(this.apiService.decryptionAES(this.applicantType));
+    
   }
 
   getBorrowerDetail() {
@@ -51,6 +54,7 @@ export class BorrowerDetailComponent implements OnInit {
                 console.log(response);
                 this.currCheckedId = response.applicant[0].applicant_id;
                 this.borrowerDetail = response.applicant[0];
+                
                 this.approvedAmountCheck = parseInt(
                   response.applicant[0].loanAmount
                 );
@@ -60,21 +64,21 @@ export class BorrowerDetailComponent implements OnInit {
 
                 if (
                   response.applicant[0].authorisation_status == '0' &&
-                  this.applicantType == 'AV'
+                  (this.applicantType) == 'AV'
                 ) {
                   this.validateButton = true;
                   this.buttonName = 'Verify Applicant'
                   this.buttonName1 = 'Reject Applicant'
                 } else if (
                   response.applicant[0].authorisation_status == '1' &&
-                  this.applicantType == 'MK'
+                  (this.applicantType) == 'MK'
                 ) {
                   this.validateButton = true;
                   this.buttonName = 'Authorise Applicant'
                   this.buttonName1 = 'Reject Applicant'
                 } else if (
                   response.applicant[0].authorisation_status == '2' &&
-                  this.applicantType == 'SH'
+                  (this.applicantType) == 'SH'
                 ) {
                   this.validateButton = true;
                   this.buttonName = 'Approve Loan'
@@ -114,23 +118,13 @@ export class BorrowerDetailComponent implements OnInit {
     });
   }
 
-  // checkUserType(authorisation_status: any) {
-  //   if (authorisation_status == '0' && this.applicantType == 'AV') {
-  //     this.authorisedButtonText = 'Approve';
-  //   }
-  //  else if (authorisation_status == '1' && this.applicantType == 'MK') {
-  //     this.authorisedButtonText = ' Approve';
-  //   }
-  //  else if (authorisation_status == '2' && this.applicantType == 'SH') {
-  //     this.authorisedButtonText = 'Approve';
-  //   }
-  // }
+
 
   authorise(authorisedButtonText: string) {
     let num = parseInt(this.currentAmount);
     console.log(typeof num);
-
-    if (num - this.approvedAmountCheck >= 0) {
+    console.log(typeof  this.currCheckedId.toString());
+    if (num - 5000 >= 0) {
       let dynamicCompanyCode: string = '';
       if (this.applicantType == 'AV') {
         dynamicCompanyCode = 'AV';
@@ -140,34 +134,41 @@ export class BorrowerDetailComponent implements OnInit {
         dynamicCompanyCode = 'SH';
       }
       const authoriseJSON: AuthorisationFormModel = {
-        applicant_id: this.currCheckedId,
-        approval_status: 'Y',
-        company_code: dynamicCompanyCode,
-        loan_amount: this.approvedAmountCheck,
-        applicant_company_code: this.companyName,
+        applicant_id: this.apiService.encryptionAES(this.currCheckedId.toString()),
+        approval_status: this.apiService.encryptionAES('Y'),
+        company_code: this.apiService.encryptionAES(dynamicCompanyCode),
+        loan_amount: this.apiService.encryptionAES(this.approvedAmountCheck.toString()),
+        applicant_company_code: this.apiService.encryptionAES(this.companyName),
       };
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, save it!',
+      }).then((result) => {
+        if (result.isConfirmed) {+
       this.apiService
         .postauthorize(authoriseJSON)
         .pipe()
         .subscribe({
           next: (response) => {
-            Swal.fire({
-              position: 'center',
-              icon: response.status ? 'success' : 'error',
-              title: response.message,
-            }).then((response) => {
-              if (response.isConfirmed) {
-                if (response) {
-                  this.router.navigate(['/pages/home']);
-                }
-              }
-            });
+            if(this.apiService.decryptionAES(response.status) == 'false'){
+              Swal.fire('unsaved', 'Your detail has not been saved.', 'error');
+            }else{
+              Swal.fire('Saved', 'Your detail has been saved.', 'success');
+            
+            }
           },
           error: (err) => {
             console.log(err);
           },
           complete: () => {},
         });
+      }
+      });
     } else {
       Swal.fire('Insufficient Fund');
     }
@@ -184,10 +185,10 @@ export class BorrowerDetailComponent implements OnInit {
     }
     const authoriseJSON: AuthorisationFormModel = {
       applicant_id: this.currCheckedId,
-      approval_status: 'N',
-      company_code: dynamicCompanyCode,
-      loan_amount: this.approvedAmountCheck,
-      applicant_company_code: this.companyName,
+      approval_status: this.apiService.encryptionAES('N'),
+      company_code: this.apiService.encryptionAES(dynamicCompanyCode),
+      loan_amount: this.apiService.encryptionAES(this.approvedAmountCheck),
+      applicant_company_code: this.apiService.encryptionAES(this.companyName),
     };
     this.apiService
       .postauthorize(authoriseJSON)
@@ -211,8 +212,13 @@ export class BorrowerDetailComponent implements OnInit {
         },
         complete: () => {},
       });
+      
   }
   back() {
     this.router.navigate(['pages/home']);
+  }
+  update() {
+    sessionStorage.setItem('applicantId',this.currCheckedId)
+    this.router.navigate(['pages/update']);
   }
 }

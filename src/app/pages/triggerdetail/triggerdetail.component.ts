@@ -35,6 +35,12 @@ export class TriggerdetailComponent implements OnInit,AfterViewInit{
         this.filterDatatable(value);
       });
   }
+
+  viewBorrowerDetail(id: string) {
+    this.router.navigate(['pages/advanceDetail'], {
+      queryParams: { id: id },
+    });
+  }
   
   getApplicationData(){
     this.apiService

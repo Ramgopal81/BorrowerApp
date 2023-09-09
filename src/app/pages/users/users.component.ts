@@ -40,7 +40,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
   rows = '';
   ngOnInit(): void {
     this.getApplicationData();
-    console.log(this.applicantType);
+    console.log(this.apiService.decryptionAES('U2FsdGVkX1+2oisx5BmmV7wz7MLKfoAHluMSHhU1qtY='));
+
   }
 
   ngAfterViewInit(): void {

@@ -1,0 +1,423 @@
+<!-- <div class="input-group">
+    <div class="col-md-4">
+      <input
+        type="search"
+        id="form1"
+        placeholder="Search Username"
+        class="form-control"
+       
+      />
+    </div>
+    <button type="button" class="btn btn-primary" (click)="modifyUser()">
+      <i class="fas fa-search"></i>
+    </button>
+  </div> -->
+  <!-- <div class="cls" style="background-color: rgb(12, 91, 137);">
+    <h3>
+        User Management
+    </h3>
+</div> -->
+<div class="centerNumberDiv">
+<form [formGroup]="loginForm" (ngSubmit)="modifyUser()" class="row g-3">
+  <div class="d-flex justify-content-center pb-1 pt-4">
+    <h3 style="color: black;">Update Applicant</h3>
+  </div>
+
+  <div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Applicant Name </label>
+      <input
+        type="text"
+        formControlName="firstName"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Date Of Birth </label>
+      <input
+        type="date"
+        formControlName="dob"
+    
+        class="form-control"
+      />
+    </div>
+</div>
+<div class="col-md-6">
+  <div style="padding-left: 15px; padding-right: 15px">
+    <label for="inputState2" class="form-label"> Applicant age </label>
+    <input
+      type="number"
+      formControlName="age"
+      
+      class="form-control"
+      onKeyPress="if(this.value.length==10) return false;"
+    />
+  </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Marital status</label>
+        <input
+          type="text"
+          formControlName="marital"
+       
+          class="form-control"
+        />
+      </div>
+</div>
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Applicant father name </label>
+        <input
+          type="text"
+          formControlName="fatherName"
+          
+          class="form-control"
+        />
+      </div>
+</div>
+
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Spouse Name</label>
+      <input
+        type="email"
+        formControlName="spouseName"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Religion </label>
+      <input
+        type="email"
+        formControlName="religion"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Applicant Address</label>
+      <input
+        type="email"
+        formControlName="address"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> City Name </label>
+      <input
+        type="email"
+        formControlName="city"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Pin Code</label>
+      <input
+        type="email"
+        formControlName="pin"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Company Name</label>
+      <input
+        type="email"
+        formControlName="companyName"
+   
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Vehicle No.</label>
+      <input
+        type="email"
+        formControlName="vehicle"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Applicant Qualification</label>
+      <input
+        type="email"
+        formControlName="qualification"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Applicant employment Type </label>
+      <input
+        type="email"
+        formControlName="employment"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Applicant Mobile No. </label>
+      <input
+        type="email"
+        formControlName="mobile"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> No. of Family No. </label>
+      <input
+        type="email"
+        formControlName="familyMember"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> No. of Earnig Member </label>
+      <input
+        type="email"
+        formControlName="earningMember"
+     
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> House Type </label>
+      <input
+        type="email"
+        formControlName="houseType"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Medical Insurance </label>
+      <input
+        type="email"
+        formControlName="medicalInsurance"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Current loan outstanding Principle</label>
+      <input
+        type="email"
+        formControlName="principle"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Current loan outstanding interest</label>
+      <input
+        type="email"
+        formControlName="intrest"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Applicant income</label>
+      <input
+        type="email"
+        formControlName="income"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">Income from other sources </label>
+      <input
+        type="email"
+        formControlName="otherIncome"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Houserent</label>
+      <input
+        type="email"
+        formControlName="houseRent"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> House renovation expenses</label>
+      <input
+        type="email"
+        formControlName="renovation"
+     
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">total monthly bill payment</label>
+      <input
+        type="email"
+        formControlName="monthlyBill"
+    
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">applicant expense monthly</label>
+      <input
+        type="email"
+        formControlName="expenseMonthly"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">ration Card</label>
+      <input
+        type="email"
+        formControlName="ration"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> nominee name </label>
+      <input
+        type="email"
+        formControlName="nomineeName"
+        
+        class="form-control"
+      />
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">nominee dob</label>
+      <input
+        type="email"
+        formControlName="nomineeDob"
+      
+        class="form-control"
+      />
+    </div>
+</div>
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">nominee age</label>
+      <input
+        type="email"
+        formControlName="nomineeAge"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+<div class="col-md-6">
+    <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label">nominee relation</label>
+      <input
+        type="email"
+        formControlName="nomineeRelation"
+       
+        class="form-control"
+      />
+    </div>
+</div>
+
+
+  <!-- <div class="d-flex justify-content-center pt-3">
+    <button type="submit" class="btn btn-success">Login</button>
+  </div> -->
+  <div
+    class="d-flex justify-content-center pt-3"
+    style="align-items: center"
+  >
+  <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" >
+    Back
+  </button>
+    <button type="submit" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)">
+      Submit
+    </button>
+  </div>
+</form>
+</div>
