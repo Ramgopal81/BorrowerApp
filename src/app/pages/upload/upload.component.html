@@ -1,0 +1,16 @@
+<div class="centerNumberDiv">
+  <div class="d-flex justify-content-center pb-1 pt-4" style="margin-bottom: 20px;">
+    <h3 style="color: black">Upload Applicant</h3>
+  </div>
+  <div class="text-center">
+    <input
+      class="form-control"
+      type="file"
+      accept=".csv"
+      (change)="onChange($event)"
+    />
+    <div style="margin-top: 20px; ">
+      <button (click)="onUpload()" class="btn btn-primary" style="background-color: rgb(12, 91, 137)">Upload</button>
+    </div>
+  </div>
+</div>

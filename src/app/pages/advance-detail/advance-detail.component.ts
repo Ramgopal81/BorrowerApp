@@ -2,14 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AdvanceSaveModel } from 'src/app/models/dataModel';
+import { NgbModal ,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-advance-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
+    NgxDatatableModule,],
   templateUrl: './advance-detail.component.html',
   styleUrls: ['./advance-detail.component.scss'],
 })
@@ -26,16 +32,18 @@ export class AdvanceDetailComponent implements OnInit {
   msg: boolean = false;
   user: any;
   status: any;
+  closeResult: string = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
     this.getBorrowerDetail();
     console.log(this.applicantType);
-    if (this.applicantType == 'SH' && this.status == 'S'){
+    if (this.applicantType == 'SH'){
       this.msg = true;
       console.log(this.msg);
       
@@ -177,9 +185,9 @@ export class AdvanceDetailComponent implements OnInit {
           applicant_id: this.currCheckedId,
           company_code: this.apiService.encryptionAES(this.applicantType),
           approval_status: this.apiService.encryptionAES('Y'),
-          approved_amount: this.apiService.encryptionAES(this.approvedAmount),
+          approved_amount: this.apiService.encryptionAES(this.approvedAmount.toString()),
           approved_username: this.apiService.encryptionAES(this.approvedUserId),
-          comment_by_sh: this.apiService.encryptionAES('Ok'),
+          comment_by_sh: this.apiService.encryptionAES('Approved'),
         };
         this.apiService
           .postSaveAdvance(addAdvanceJSON)
@@ -198,6 +206,9 @@ export class AdvanceDetailComponent implements OnInit {
                   this.apiService.decryptionAES(response.message),
                   'success'
                 );
+                setTimeout(() => {
+                  this.router.navigate(['pages/triggerDetail']);
+                }, 2000);
               }
             },
             error: (err) => {
@@ -224,9 +235,9 @@ export class AdvanceDetailComponent implements OnInit {
           applicant_id: this.currCheckedId,
           company_code: this.apiService.encryptionAES(this.applicantType),
           approval_status: this.apiService.encryptionAES('N'),
-          approved_amount: this.apiService.encryptionAES(this.approvedAmount),
+          approved_amount: this.apiService.encryptionAES(this.approvedAmount.toString()),
           approved_username: this.apiService.encryptionAES(this.approvedUserId),
-          comment_by_sh: this.apiService.encryptionAES('Ok'),
+          comment_by_sh: this.apiService.encryptionAES('Reject'),
         };
         this.apiService
           .postSaveAdvance(addAdvanceJSON)
@@ -235,16 +246,19 @@ export class AdvanceDetailComponent implements OnInit {
             next: (response) => {
               if (this.apiService.decryptionAES(response.status) == 'false') {
                 Swal.fire(
-                  'unsaved',
+                  
                   this.apiService.decryptionAES(response.message),
-                  'error'
+                 
                 );
               } else {
                 Swal.fire(
-                  'Saved',
+                  
                   this.apiService.decryptionAES(response.message),
-                  'success'
+                 
                 );
+                setTimeout(() => {
+                  this.router.navigate(['pages/triggerDetail']);
+                }, 2000);
               }
             },
             error: (err) => {
@@ -255,6 +269,33 @@ export class AdvanceDetailComponent implements OnInit {
       }
     });
   }
+
+  openVerticallyCentered(content: any) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  getId() {
+
+  }
+  cancel() {}
 
   back() {
     this.router.navigate(['pages/triggerDetail']);

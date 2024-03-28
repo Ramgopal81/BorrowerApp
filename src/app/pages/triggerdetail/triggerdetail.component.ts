@@ -55,6 +55,9 @@ export class TriggerdetailComponent implements OnInit,AfterViewInit{
               if (element.applicant_id) {
                 element.applicant_id = this.apiService.decryptionAES(element.applicant_id);
               }
+              if (element.loan_id) {
+                element.loan_id = this.apiService.decryptionAES(element.loan_id);
+              }
               if (element.from_location) {
                 element.from_location = this.apiService.decryptionAES(element.from_location);
               }
@@ -82,11 +85,11 @@ export class TriggerdetailComponent implements OnInit,AfterViewInit{
               if (element.approved_user_id) {
                 element.approved_user_id = this.apiService.decryptionAES(element.approved_user_id);
               }
-              if (element.account_no) {
-                element.account_no = this.apiService.decryptionAES(element.account_no);
+              if (element.av_approval) {
+                element.av_approval = this.apiService.decryptionAES(element.av_approval);
               }
-              if (element.ifsc_code) {
-                element.ifsc_code = this.apiService.decryptionAES(element.ifsc_code);
+              if (element.comment_by_av) {
+                element.comment_by_av = this.apiService.decryptionAES(element.comment_by_av);
               }
               if (element.approved_amount) {
                 element.approved_amount = this.apiService.decryptionAES(element.approved_amount);

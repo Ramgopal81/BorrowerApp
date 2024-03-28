@@ -13,5 +13,6 @@ export class SidebarComponent {
   @Input() isExpanded: boolean = false;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  companyName: any = sessionStorage.getItem('companyName');
   handleSidebarToggle = () => this.toggleSidebar.emit(!this.isExpanded);
 }

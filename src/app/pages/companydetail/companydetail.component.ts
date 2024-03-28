@@ -84,11 +84,12 @@ this.router.navigate(['addCompany'])
         Swal.fire({
           position: 'center',
           icon: response.status ? 'success' : 'error',
-          title: response.message
+          title: this.apiService.decryptionAES(response.message)
         }).then((response) => {
           if (response.isConfirmed) {
             if (response) {
               // this.router.navigate(['/pages/user']);
+              this.getcompanyData()
             }
           }
         });

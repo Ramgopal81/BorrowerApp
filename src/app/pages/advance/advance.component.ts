@@ -39,6 +39,7 @@ export class AdvanceComponent {
   applicantsData: any;
   applicantId: any;
   amount: any = sessionStorage.getItem('current');
+  approvedBy:any = sessionStorage.getItem('mobile');
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -46,28 +47,28 @@ export class AdvanceComponent {
     private modalService: NgbModal
   ) {
     this.loginForm = this.fb.group({
-      authoriserId: ['', [Validators.required]],
-      applicantId: ['', [Validators.required]],
-      fromDate: ['', [Validators.required]],
-      toDate: ['', [Validators.required]],
-      truckNo: ['', [Validators.required]],
-      fromLocation: ['', [Validators.required]],
-      toLocation: ['', [Validators.required]],
-      advanceAmount: ['', [Validators.required]],
-      returnDate: ['', [Validators.required]],
-      accountNo: ['', [Validators.required]],
-      ifscCode: ['', [Validators.required]],
-      approvedAmount: ['', [Validators.required]],
-      mkComment: ['', [Validators.required]],
+      authoriserId: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      applicantId: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      fromDate: ['', [Validators.required,Validators.maxLength(20)]],
+      toDate: ['', [Validators.required,Validators.maxLength(20)]],
+      truckNo: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      fromLocation: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      toLocation: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      advanceAmount: ['', [Validators.required,Validators.maxLength(20),Validators.pattern("^[0-9]*$")]],
+      returnDate: ['', [Validators.required,Validators.maxLength(20)]],
+      accountNo: ['', [Validators.required,Validators.maxLength(20),Validators.pattern("^[0-9]*$")]],
+      ifscCode: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      // approvedAmount: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      mkComment: ['', [Validators.required,Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
     });
   }
   ngOnInit() {
     this.getApplicationData();
     console.log(typeof this.amount);
-    
+    this.loginForm.controls['authoriserId'].setValue(this.apiService.decryptionAES(this.approvedBy));
   }
   submit() {
-    if (this.loginForm.valid || (parseInt(this.amount) - parseInt(this.loginForm.value.advanceAmount)> 0)) {
+    if (this.loginForm.valid ) {
       Swal.fire({
         title: 'Are you sure?',
         text: "You want to save this detail!",
@@ -139,6 +140,9 @@ export class AdvanceComponent {
                     this.apiService.decryptionAES(response.message),
                     'success'
                   );
+                  setTimeout(() => {
+                    this.router.navigate(['pages/triggerDetail']);
+                  }, 2000);
                 }
               },
               error: (err) => {
@@ -150,7 +154,9 @@ export class AdvanceComponent {
         }
       });
     }else{
-      Swal.fire('Unsaved', 'You exceeded your limit', 'error');
+      Swal.fire('Unsaved', 'Please Provide Correct Data', 'error');
+      console.log(this.loginForm);
+      
     }
   }
 
@@ -248,5 +254,13 @@ export class AdvanceComponent {
         },
         complete: () => {},
       });
+  }
+
+  back() {
+    this.router.navigate(['pages/deleteUser']);
+  }
+
+  clear(){
+    this.loginForm.reset()
   }
 }

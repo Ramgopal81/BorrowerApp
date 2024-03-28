@@ -24,11 +24,14 @@ export class AddcompanyComponent {
     private apiService: ApiService
   ) {
     this.loginForm = this.fb.group({
-      comapanyId: ['', [Validators.required]],
-      companyCode: ['', [Validators.required]],
-      companyName: ['', [Validators.required]],
-      companyAddress: ['', [Validators.required]],
-      allowedAmount: ['', [Validators.required]],
+      companyCode: ['', [Validators.required,Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$'),Validators.maxLength(20)]],
+      companyName: ['', [Validators.required,Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$'),Validators.maxLength(20)]],
+      companyAddress: ['', [Validators.required,Validators.maxLength(100)]],
+      allowedAmount: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      contactPerson: ['', [Validators.required,Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$'),Validators.maxLength(20)]],
+      contactMobile: ['', [Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      contactdesignation: ['', [Validators.required,Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$'),Validators.maxLength(20)]],
+      contactEmail: ['', [Validators.required,Validators.pattern(/^[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}$/)]],
     });
   }
 
@@ -38,10 +41,14 @@ export class AddcompanyComponent {
     const addCompanyJSON: AddCompanyModel = {
       
       company_code:this.apiService.encryptionAES(this.loginForm.value.companyCode),
-      company_id: null,
+      company_id: this.apiService.encryptionAES('AF'),
       company_name:this.apiService.encryptionAES(this.loginForm.value.companyName),
       company_address:this.apiService.encryptionAES(this.loginForm.value.companyAddress),
-      allowed_amount:this.apiService.encryptionAES(this.loginForm.value.allowedAmount)
+      allowed_amount:this.apiService.encryptionAES(this.loginForm.value.allowedAmount),
+      contact_person1: this.apiService.encryptionAES(this.loginForm.value.contactPerson),
+      contact_person_mobile1:this.apiService.encryptionAES(this.loginForm.value.contactMobile),
+      contact_person_designation1:this.apiService.encryptionAES(this.loginForm.value.contactdesignation),
+      contact_person_email1:this.apiService.encryptionAES(this.loginForm.value.contactEmail)
     };
     this.apiService
       .postAddCompany(addCompanyJSON)
@@ -54,11 +61,13 @@ export class AddcompanyComponent {
           Swal.fire({
             position: 'center',
             icon: response.status ? 'success' : 'error',
-            title: response.message
+            title: this.apiService.decryptionAES(response.message)
           }).then((response) => {
             if (response.isConfirmed) {
               if (response) {
-                this.router.navigate(['/pages/user']);
+                setTimeout(() => {
+                  this.router.navigate(['/pages/companyDetail']);
+                }, 2000);
               }
             }
           });
@@ -69,10 +78,15 @@ export class AddcompanyComponent {
         complete: () => {},
       });
       
+  }   else {
+    Swal.fire('', '“Please Provide Correct Data”', 'error');
   }
     console.log(this.loginForm);
   }
   back(){
     this.router.navigate(['/pages/companyDetail']);
+  }
+  clear(){
+    this.loginForm.reset()
   }
 }

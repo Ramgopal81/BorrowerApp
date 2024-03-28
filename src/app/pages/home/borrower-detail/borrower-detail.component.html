@@ -84,6 +84,10 @@
           <label> <strong>Pridicted Score</strong></label>
           {{ borrowerDetail.predicted_score }}
         </div>
+        <div class="block" *ngIf="elegible == true">
+          <label> <strong>Eligible Amount</strong></label>
+          <input type="number" [(ngModel)]="elegibleAmount"  maxlength="5">
+        </div>
         <div class="block">
           <label> <strong>Applicant Signature</strong></label>
           <img
@@ -188,19 +192,15 @@
                 height="400"
               />
             </div>
-          <!-- </div>
-            raise travel advance request
-            travel advance request list
-        </div> -->
       </div>
     </div>
     <div class="block">
       <label> <strong>Add Comment</strong></label>
-      <textarea maxlength="500" style="width: 500px;"> </textarea>
+      <textarea maxlength="500" style="width: 500px;" [(ngModel)]="comment"> </textarea>
     </div>
    
     <div
-      class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+      class="col-lg-6 col-md-6 col-sm-6 col-6 d-flex"
       style="align-items: center"
     >
       <button
@@ -214,7 +214,7 @@
      
       <div *ngIf="validateButton == true">
         <button
-        style="background-color: rgb(12, 91, 137)"
+        style="background-color: rgb(12, 91, 137);"
           type="button"
           class="btn btn-success"
           (click)="authorise(authorisedButtonText)"
@@ -224,26 +224,23 @@
         <button
           type="button"
           class="btn btn-danger"
-          style="margin-left: 10px;background-color: rgb(12, 91, 137)"
+          style="margin-left: 10px;background-color: rgb(12, 91, 137);"
           (click)="notAuthorise(authorisedButtonText)"
         >
         {{buttonName1}}
         </button>
       </div>
+      <div *ngIf="updtButton == true">
+        <button
+        type="button"
+        class="btn btn-success"
+        (click)="update()"
+        style="margin: 15px; background-color: rgb(12, 91, 137)"
+      >
+        Update
+      </button>
+      </div>
     </div>
-    <div
-    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
-    style="align-items: center"
-  >
-    <!-- <button
-      type="button"
-      class="btn btn-success"
-      (click)="update()"
-      style="margin: 15px;margin-top: 5px; background-color: rgb(12, 91, 137)"
-    >
-      Update
-    </button> -->
    
-  </div>
   </div>
 </div>

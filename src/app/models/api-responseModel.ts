@@ -149,3 +149,10 @@ export interface AdvanceTriggerModel {
       approval_status: string
 }
 
+export interface UploadResponceModel {
+  date:string,
+  error:string,
+  filename:string,
+  row_no:string
+}
+

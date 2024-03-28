@@ -117,6 +117,9 @@ export class CreateUserComponent {
           }else{
             Swal.fire('Saved', 'Your detail has been saved.', 'success');
             this.loginForm.reset();
+            setTimeout(() => {
+              this.router.navigate(['pages/users']);
+            }, 3000);
           }
           if(response.status == true){
             this.loginForm.reset();
@@ -131,10 +134,17 @@ export class CreateUserComponent {
     
     }
   });
-  }
+} else {
+  Swal.fire('', '“Please Provide Correct Data”', 'error');
+}
     console.log(this.loginForm);
   }
   back(){
     this.router.navigate(['/pages/users']);
   }
+
+  clear(){
+    this.loginForm.reset()
+  }
 }
+

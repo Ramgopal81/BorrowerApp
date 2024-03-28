@@ -26,7 +26,7 @@
               maxlength="30"
               [(ngModel)]="applicantId" 
             />
-              <button style="border-radius: 5px;background-color: rgb(12, 91, 137);color: aliceblue;" (click)="openVerticallyCentered(mymodal1)">Click me</button>
+              <button style="border-radius: 5px;background-color: rgb(12, 91, 137);color: aliceblue;" (click)="openVerticallyCentered(mymodal1)">Add Applicant</button>
           </div>
         </div>
         
@@ -157,7 +157,7 @@
 </div> -->
 <div class="col-md-6">
   <div style="padding-left: 15px; padding-right: 15px">
-    <label for="inputState2" class="form-label"> Comment By Mk</label> <span style="color: red;"> *</span>
+    <label for="inputState2" class="form-label"> Comment By Authoriser</label> <span style="color: red;"> *</span>
     <input
       type="text"
       formControlName="mkComment"
@@ -189,8 +189,15 @@
         <!-- <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="show()">
           Show detail
         </button> -->
+        <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="back()">
+          Back
+        </button>
           <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="submit()">
             Submit
+          </button>
+         
+          <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="clear()">
+            Clear
           </button>
         </div>
       </form>

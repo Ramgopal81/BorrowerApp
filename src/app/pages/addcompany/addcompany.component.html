@@ -6,7 +6,7 @@
   <div class="centerNumberDiv">
     <form [formGroup]="loginForm" (ngSubmit)="createUser()">
       <div class="d-flex justify-content-center pb-1 pt-4">
-        <h3 style="color: black;">Add Comapny</h3>
+        <h3 style="color: black;">Add Company</h3>
       </div>
       <div class="pt-2 pb-1">
           <div style="padding-left: 15px; padding-right: 15px">
@@ -51,7 +51,7 @@
         <div style="padding-left: 15px; padding-right: 15px">
           <label for="inputState2" class="form-label"> Allowed Amount  </label> <span style="color: red;"> *</span>
           <input
-            type="number"
+            type="text"
             formControlName="allowedAmount"
             placeholder="Allowed Amount"
             class="form-control"
@@ -59,6 +59,50 @@
           />
         </div>
     </div>
+    <div class="pt-2 pb-1">
+      <div style="padding-left: 15px; padding-right: 15px">
+        <label for="inputState2" class="form-label"> Contact Person  </label> <span style="color: red;"> *</span>
+        <input
+          type="text"
+          formControlName="contactPerson"
+          placeholder="Contact Person"
+          class="form-control"
+        />
+      </div>
+  </div>
+  <div class="pt-2 pb-1">
+    <div style="padding-left: 15px; padding-right: 15px">
+      <label for="inputState2" class="form-label"> Contact Person Mobile  </label> <span style="color: red;"> *</span>
+      <input
+        type="text"
+        formControlName="contactMobile"
+        placeholder="Contact Person Mobile"
+        class="form-control"
+      />
+    </div>
+</div>
+<div class="pt-2 pb-1">
+  <div style="padding-left: 15px; padding-right: 15px">
+    <label for="inputState2" class="form-label"> Contact Person Email </label> <span style="color: red;"> *</span>
+    <input
+      type="text"
+      formControlName="contactdesignation"
+      placeholder="Contact Person Email"
+      class="form-control"
+    />
+  </div>
+</div>
+<div class="pt-2 pb-1">
+  <div style="padding-left: 15px; padding-right: 15px">
+    <label for="inputState2" class="form-label"> Contact Person Designation </label> <span style="color: red;"> *</span>
+    <input
+      type="text"
+      formControlName="contactEmail"
+      placeholder="Contact Person Designation"
+      class="form-control"
+    />
+  </div>
+</div>
   
       <!-- <div class="d-flex justify-content-center pt-3">
         <button type="submit" class="btn btn-success">Login</button>
@@ -72,6 +116,9 @@
       </button>
         <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="createUser()">
           Submit
+        </button>
+        <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="clear()">
+          Clear
         </button>
       </div>
     </form>

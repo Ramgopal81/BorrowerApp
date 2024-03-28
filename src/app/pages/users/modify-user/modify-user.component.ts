@@ -88,8 +88,12 @@ export class ModifyUserComponent {
         next: (response) => {
           if(this.apiService.decryptionAES(response.status) == 'false'){
           Swal.fire('unsaved', 'Your detail has not been saved.', 'error');
+         
         }else{
           Swal.fire('Saved', 'Your detail has been saved.', 'success');
+          setTimeout(() => {
+            this.router.navigate(['pages/users']);
+          }, 2000);
         }
       
       },
@@ -102,7 +106,9 @@ export class ModifyUserComponent {
      
     }
   });
-  }
+} else {
+  Swal.fire('', '“Please Provide Correct Data”', 'error');
+}
     console.log(this.loginForm);
   }
 
@@ -163,6 +169,10 @@ export class ModifyUserComponent {
         },
         complete: () => {},
       });
+    }
+
+    clear(){
+      this.loginForm.reset()
     }
   }
 

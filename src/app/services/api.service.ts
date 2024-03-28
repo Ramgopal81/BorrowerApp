@@ -35,7 +35,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AddCompanyModel, AddUserModel, AdvanceSaveModel, AdvanceTrigger, AuthorisationFormModel, Authorize, Detail, ForgetPass, ModifyUserModel, ResetPass, Update, UserDetail } from '../models/dataModel';
+import { AddCompanyModel, AddUserModel, AdvanceSaveModel, AdvanceTrigger, AuthorisationFormModel, Authorize, Detail, DisburseModel, ForgetPass, MetaModel, ModifyUserModel, ResetPass, Update, UserDetail } from '../models/dataModel';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 
@@ -120,6 +120,14 @@ export class ApiService {
             
             });
   }
+  postuploadDetails(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/borrower/UploadApplicantsLog`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
   postcompanyName(company_id:string): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/applicant/borrower/company/get_companyById`, {company_id:company_id},{
               headers: new HttpHeaders({
@@ -145,8 +153,16 @@ export class ApiService {
       
       })
   }
-  getadvanceById(applicant_id:string|null){
-    return this.http.post<any>(`${this.API_URL}/borrower/getadvanceTriggerByApplicant_id`,{applicant_id:applicant_id}, {
+  getapplicantById1(applicant_id:string|null){
+    return this.http.post<any>(`${this.API_URL}/applicant/GetApplicantListenc`,{applicant_id:applicant_id}, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      
+      })
+  }
+  getadvanceById(loan_id:string|null){
+    return this.http.post<any>(`${this.API_URL}/borrower/getadvanceTriggerByLoan_id`,{loan_id:loan_id}, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
@@ -156,6 +172,15 @@ export class ApiService {
 
   getapplicantLogin(mobile:any,mpin:any){
     return this.http.get<any>(`${this.API_URL}/applicant/getapplicantList/v1?${mobile},${mpin}`, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      
+      })
+  }
+
+  getIfsc(ifsc:any){
+    return this.http.get<any>(`https://ifsc.razorpay.com/?${ifsc}`, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
@@ -200,7 +225,7 @@ export class ApiService {
   
   }
   postSaveAdvance(saveAdvance: AdvanceSaveModel): Observable<any> {
-    return this.http.post(`${this.API_URL}/borrower/ApproveAdvanceLoan`, saveAdvance, {
+    return this.http.post(`${this.API_URL}/borrower/ApproveAdvanceLoanSH`, saveAdvance, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -256,8 +281,26 @@ export class ApiService {
     });
   }
 
+  postDisburseDetail(disburseDetail: DisburseModel): Observable<any> {
+    return this.http.post(`${this.API_URL}/borrower/SHDisbursemnt`, disburseDetail, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    
+    });
+  }
+
   postAdvanceDetails(): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/borrower/getAlladvanceTrigger`, {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+
+  postAllLoanId(): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/borrower/GetAllLoanId`, {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
               }),
@@ -273,4 +316,26 @@ export class ApiService {
       }
     );
   }
+
+
+  postOpenUrl(metaModel: MetaModel): Observable<any> {
+    return this.http.post<any>(`http://4.236.144.236:9567/meta`,metaModel,  {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+            
+            });
+  }
+
+  baseApiURL1 = 'http://20.83.180.143:9080/borrower/uploadApplicantData';
+  // reader = new FileReader();
+  uploadasset(file: any): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Accept', 'application/json');
+    return this.http.post(this.baseApiURL1, formData, {});
+  }
+
 }

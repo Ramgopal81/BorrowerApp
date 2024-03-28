@@ -26,6 +26,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent {
   showFiller = false;
+  companyName: any = sessionStorage.getItem('companyName');
+  userName: any = sessionStorage.getItem('userName');
   constructor(private router: Router,private authService:AuthService) {}
   editProfile() {
     this.router.navigate(['pages/reset']);

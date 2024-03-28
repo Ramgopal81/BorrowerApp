@@ -52,7 +52,7 @@
             </a>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Comapany Name" [flexGrow]="2" [resizeable]="false">
+        <ngx-datatable-column name="Company Name" [flexGrow]="2" [resizeable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <a class="nav-link tableAtag disableTextSelection" (dblclick)="viewBorrowerDetail(row.applicant_id)">
               {{ row?.company_name }}
@@ -136,6 +136,7 @@
     >
       Download
     </button>
+    <!-- <button (click)="update()">Update</button> -->
    
   </div>
   </div>

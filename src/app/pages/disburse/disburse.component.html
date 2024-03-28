@@ -1,0 +1,95 @@
+<div style="padding-left: 25px;">
+  <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  ></div>
+ 
+  <div
+    class="container-fluid"
+    style="border: 15px solid rgb(223, 220, 220); padding-top: 0px"
+  >
+    <div class="d-flex justify-content-center pt-2 pb-3">
+      <h3>Capture Disbursement Details</h3>
+    </div>
+
+    <div class="row pt-3 pb-3">
+      <div
+        class="col-lg-6 col-md-6 col-sm-6 col-6"
+        style="border-right: 2px solid rgb(203, 200, 200)"
+      >
+      <div class="block" style="margin: 5px;">
+        <label> <strong>Date of disbursement</strong></label>
+        <input type="date" [(ngModel)]="date">
+      </div>
+      <div class="block" style="margin: 5px;">
+        <label> <strong>Approved amount</strong></label>
+        <input type="number" [(ngModel)]="approvedAmount" maxlength="10">
+      </div>
+      <div class="block" style="margin: 5px;">
+        <label> <strong>Loan Id</strong></label>
+        <select id="inputState1 "  name="company" [(ngModel)]="loanId">
+          <option selected>Choose company</option>
+            <option *ngFor="let item of company" value="{{item}}">{{item}}</option>
+          </select>
+      </div>
+       
+       
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+        <!-- <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-6"> -->
+            
+            <div class="block" style="margin: 5px;">
+              <label> <strong>Transaction Id</strong></label>
+              <input type="number" [(ngModel)]="transactionId" maxlength="16">
+            </div>
+            
+            <div class="block" style="margin: 5px;">
+              <label> <strong>Remark</strong></label>
+              <input type="text" [(ngModel)]="remark" maxlength="100">
+            </div>
+          
+      </div>
+    </div>
+  
+   
+    <div
+      class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+      style="align-items: center"
+    >
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="back()"
+        style="margin: 15px;background-color: rgb(12, 91, 137)"
+      >
+        Back
+      </button>
+      <div >
+      <button
+      type="button"
+      class="btn btn-success"
+     (click)="saveAdvanceDetail()"
+      style="margin: 15px;background-color: rgb(12, 91, 137)"
+    >
+      Save
+    </button>
+    
+  </div>
+    </div>
+    <div
+    class="col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+    style="align-items: center"
+  >
+    <!-- <button
+      type="button"
+      class="btn btn-success"
+      (click)="update()"
+      style="margin: 15px;margin-top: 5px; background-color: rgb(12, 91, 137)"
+    >
+      Update
+    </button> -->
+   
+  </div>
+  </div>
+</div>

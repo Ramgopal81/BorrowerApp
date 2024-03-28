@@ -22,6 +22,9 @@ export interface AuthorisationFormModel {
   applicant_id: string;
   loan_amount:string;
   applicant_company_code:string
+  approval_by:string
+  comment:string
+  eligible_loan_amount:string
 }
 
 export interface AddUserModel{
@@ -79,7 +82,10 @@ export interface AddCompanyModel{
     company_name: string,
     company_address: string,
     allowed_amount: string
-  
+    contact_person1:string
+    contact_person_mobile1:string
+    contact_person_designation1:string
+    contact_person_email1:string
 }
 
 export interface AdvanceTrigger{
@@ -105,11 +111,11 @@ export interface Update{
   vehicle_no: string,
   company_name: string,
   applicant_firstname: string,
-  applicant_Date_of_birth: string,
+  // applicant_Date_of_birth: string,
   age: string,
   maritalstatus: string,
   nominee_name: string,
-  nominee_dob: string,
+  // nominee_dob: string,
   nominee_age: string,
   nominee_relation: string,
   spouse_name: string,
@@ -131,7 +137,7 @@ export interface Update{
   food_expenses: string,
   houserent: string,
   house_renovation_expenses: string,
-  updated_by: string,
+  updated_by: string|null,
   total_monthly_bill_payment: string,
   applicant_expense_monthly: string,
   applicant_id: string
@@ -146,4 +152,26 @@ export interface AdvanceSaveModel{
   approved_amount: string,
   approved_username: string,
   comment_by_sh: string
+}
+
+export interface MetaModel{
+  name:string,
+  clanguage:string,
+  accnum:string,
+  loanamout:string,
+  pendingamount:string,
+  EMIamount:string,
+  duedate:string,
+  pemi:string
+}
+
+
+export interface DisburseModel{
+  date_of_disbursemnet: string,
+  amount: string,
+  remarks: string,
+  loan_id: string,
+  transaction_id: string
+  disbursement_ifsc:string
+  disbursement_account_no:string
 }

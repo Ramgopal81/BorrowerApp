@@ -113,6 +113,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
             complete: () => {},
           });
         Swal.fire('deleted', 'Your detail has been deleted.', 'success');
+        this.getApplicationData()
       }
     });
   }

@@ -18,6 +18,8 @@ import { OptionComponent } from "./option/option.component";
 import { TriggerdetailComponent } from "./triggerdetail/triggerdetail.component";
 import { UpdateComponent } from "./update/update.component";
 import { AdvanceDetailComponent } from "./advance-detail/advance-detail.component";
+import { UploadComponent } from "./upload/upload.component";
+import { DisburseComponent } from "./disburse/disburse.component";
 
 
 export const PAGES_ROUTE: Route[] = [
@@ -98,6 +100,14 @@ export const PAGES_ROUTE: Route[] = [
         {
           "path":"advanceDetail",
           component:AdvanceDetailComponent
+        },
+        {
+          "path":"upload",
+          component:UploadComponent
+        },
+        {
+          "path":"disburse",
+          component:DisburseComponent
         },
 
     ],

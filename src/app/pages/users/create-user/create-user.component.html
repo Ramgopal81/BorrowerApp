@@ -50,8 +50,8 @@
         <div style="padding-left: 15px; padding-right: 15px">
           <label for="inputState1" class="form-label"> Company </label>
             <select id="inputState1 " class="form-control" formControlName="company" name="company">
-            <option selected>Choose company</option>
-              <option *ngFor="let item of company" value="{{item.company_code}}">{{item.company_name}}</option>
+            <option selected >Choose company</option>
+              <option *ngFor="let item of company" value="{{item.company_code}}" selected>{{item.company_name}}</option>
             </select>
         </div>
     </div>
@@ -89,6 +89,9 @@
     </button>
       <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="createUser()">
         Submit
+      </button>
+      <button type="button" class="btn btn-success" style="margin-left: 10px;background-color: rgb(12, 91, 137)" (click)="clear()">
+        Clear
       </button>
     </div>
   </form>

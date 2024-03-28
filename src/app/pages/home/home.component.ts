@@ -198,4 +198,8 @@ console.log(this.applicantType);
       this.viewUrl,'_blank'
      );
   }
+
+  update(){
+    this.router.navigate(['/update']);
+  }
 }
